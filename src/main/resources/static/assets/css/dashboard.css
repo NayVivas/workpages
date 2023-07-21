@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+[v-cloak]{
+    display: none;
+}
+
+:root {
+	--poppins: 'Poppins', sans-serif;
+	--lato: 'Lato', sans-serif;
+	--green: #198754;
+	--ligth-green: rgb(221, 232, 227);
+	--grey: #dedede;;
+	--dark-grey: #AAAAAA;
+	--dark: #342E37;
+	--red: #DB504A;
+}
+
+html {
+	overflow-x: hidden;
+}
+
+body {
+	background: var(--grey);
+	overflow-x: hidden;
+}
+
+body.sidebar-open {
+	background: var(--ligth-green);
+}
+
+a {
+	text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
+
+/* ================ Sidebar ================ */
+#sidebar {
+	position: fixed !important;
+	top: 0 !important;
+	left: 0 !important;
+	width: 280px !important;
+	height: 100% !important;
+	background: var(--green) !important;
+	z-index: 2000 !important;
+	font-family: var(--lato) !important;
+	transition: .3s ease !important;
+	overflow-x: hidden !important;
+	scrollbar-width: none !important;
+}
+
+#sidebar::--webkit-scrollbar {
+	display: none !important;
+}
+
+#sidebar.hide {
+	width: 60px !important;
+}
+
+#sidebar .brand {
+	font-size: 24px !important;
+	font-weight: 700 !important;
+	height: 56px !important;
+	display: flex !important;
+	align-items: center !important;
+	color: var(--grey) !important;
+	position: sticky !important;
+	top: 0 !important;
+	left: 0 !important;
+	background: var(--green) !important;
+	z-index: 500 !important;
+	padding-bottom: 20px !important;
+	box-sizing: content-box !important;
+}
+
+#sidebar .brand .bx {
+	min-width: 60px !important;
+	display: flex !important;
+	justify-content: center !important;
+}
+
+#sidebar .side-menu {
+	width: 100% !important;
+	margin-top: 48px !important;
+}
+
+#sidebar .side-menu li {
+	height: 48px !important;
+	background: transparent !important;
+	margin-left: -20px !important;
+	border-radius: 48px 0 0 48px !important;
+	padding: 4px !important;
+}
+
+#sidebar .side-menu li.active {
+	background: var(--grey) !important;
+	position: relative !important;
+}
+
+#sidebar .side-menu li.active::before {
+	content: '' !important;
+	position: absolute !important;
+	width: 40px !important;
+	height: 40px !important;
+	border-radius: 50% !important;
+	top: -40px !important;
+	right: 0 !important;
+	box-shadow: 20px 20px 0 var(--grey) !important;
+	z-index: -1  !important;
+}
+
+#sidebar .side-menu li.active::after {
+	content: '' !important;
+	position: absolute !important;
+	width: 40px !important;
+	height: 40px !important;
+	border-radius: 50% !important;
+	bottom: -40px !important;
+	right: 0 !important;
+	box-shadow: 20px -20px 0 var(--grey) !important;
+	z-index: -1 !important;
+}
+
+#sidebar .side-menu li a {
+	width: 100% !important;
+	height: 100% !important;
+	background: var(--green) !important;
+	display: flex !important;
+	align-items: center !important;
+	border-radius: 48px !important;
+	font-size: 16px !important;
+	color: var(--dark) !important;
+	white-space: nowrap !important;
+	overflow-x: hidden !important;
+}
+
+#sidebar .side-menu.top li.active a {
+	color: var(--grey) !important;
+}
+
+#sidebar.hide .side-menu li a {
+	width: calc(48px - (4px * 2)) !important;
+	transition: width .3s ease !important;
+}
+
+#sidebar .side-menu li a.logout {
+	color: var(--red) !important;
+}
+
+#sidebar .side-menu.top li a:hover {
+	color: var(--grey) !important;
+}
+
+#sidebar .side-menu li a .bx {
+	min-width: calc(60px  - ((4px + 6px) * 2)) !important;
+	display: flex !important;
+	justify-content: center !important;
+}
+
+#content {
+	position: relative;
+	width: calc(100% - 280px);
+	left: 280px;
+	transition: .3s ease;
+}
+#sidebar.hide ~ #content {
+	width: calc(100% - 60px);
+	left: 60px;
+}
+
+/* ================ Nabvar ================ */
+#content nav {
+	height: 56px;
+	background: var(--green);
+	padding: 0 24px;
+	display: flex;
+	align-items: center;
+	grid-gap: 24px;
+	font-family: var(--lato);
+	position: sticky;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+
+#content nav::before {
+	content: '';
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	bottom: -40px;
+	left: 0;
+	border-radius: 50%;
+	box-shadow: -20px -20px 0 var(--green);
+}
+
+
+/* ================ Main ================ */
+main {
+	width: 100%;
+	padding: 36px 24px;
+	font-family: var(--poppins);
+	max-height: calc(100vh - 56px);
+	overflow-y: auto;
+    margin-left: 12vw;
+}
+
+main .head-title {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	grid-gap: 16px;
+	flex-wrap: wrap;
+}
+
+main .head-title .left h1 {
+	font-size: 36px;
+	font-weight: 600;
+	margin-bottom: 10px;
+	color: var(--dark);
+}
+
+main .head-title .left .breadcrumb {
+	display: flex;
+	align-items: center;
+	grid-gap: 16px;
+}
+
+main .head-title .left .breadcrumb li {
+	color: var(--dark);
+}
+
+main .head-title .left .breadcrumb li a {
+	color: var(--dark-grey);
+	pointer-events: none;
+}
+
+main .head-title .left .breadcrumb li a.active {
+	color: var(--blue);
+	pointer-events: unset;
+}
+
+main .head-title .btn-download {
+	height: 36px;
+	padding: 0 16px;
+	border-radius: 36px;
+	background: var(--grey);
+	color: var(--green);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	grid-gap: 10px;
+	font-weight: 500;
+    margin-right: 18rem;
+}
+
+main .box-info {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+	grid-gap: 24px;
+	margin-top: 36px;
+}
+
+main .box-info li {
+	padding: 24px;
+	background: var(--green);
+	border-radius: 20px;
+	display: flex;
+	align-items: center;
+	grid-gap: 24px;
+}
+
+main .box-info li .bx {
+	width: 80px;
+	height: 80px;
+	border-radius: 10px;
+	font-size: 36px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+/* ================ Media Queries ================ */
+
+@media screen and (max-width: 768px) {
+	#sidebar {
+		width: 200px;
+	}
+
+	#content {
+		width: calc(100% - 60px);
+		left: 200px;
+	}
+
+	#content nav .nav-link {
+		display: none;
+	}
+}
+
+@media screen and (max-width: 576px) {
+	#content nav form .form-input input {
+		display: none;
+	}
+
+	#content nav form .form-input button {
+		width: auto;
+		height: auto;
+		background: transparent;
+		border-radius: none;
+		color: var(--dark);
+	}
+
+	#content nav form.show .form-input input {
+		display: block;
+		width: 100%;
+	}
+	#content nav form.show .form-input button {
+		width: 36px;
+		height: 100%;
+		border-radius: 0 36px 36px 0;
+		color: var(--green);
+		background: var(--red);
+	}
+
+	#content nav form.show ~ .notification,
+	#content nav form.show ~ .profile {
+		display: none;
+	}
+
+	#content main .box-info {
+		grid-template-columns: 1fr;
+	}
+}

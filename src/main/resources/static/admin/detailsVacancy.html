@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles de la vacante</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/recruiters.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div id="app" v-cloak>
+
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bx-menu'></i>
+                <span class="text mt-5"><img src="../assets/img/logoGarzon.png" alt="" style="width: 10rem;"></span>
+            </a>
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="./myhome.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Mi portal Garzón</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./users.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./recruiters.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Reclutadores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./allVacancies.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Vacantes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./settings.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Herramientas</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="./profileAdmin.html">
+                        <i class='bx bxs-cog'></i>
+                        <span class="text">Mi perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="logout" @click="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+                <input type="checkbox" id="switch-mode" hidden>
+                <label for="switch-mode" class="switch-mode"></label>
+            </nav>
+        </section>
+        <!-- NAVBAR -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Detalles de la vacante</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Mi portal Garzón</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Detalles de la vacante</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div class="modal fade" id="stateApplicationModal" tabindex="-1" aria-labelledby="stateApplicationModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="stateApplicationModalLabel">Editar estado de la postulación</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="input-field">
+                            <select id="state" v-model="selectedState">
+                                <option value="">Todos</option>
+                                <option v-for="category in applicationStateCategory" :value="category.description">{{ category.description }}</option>
+                            </select>
+                        </div>
+                        <input type="hidden" id="applicationId" v-bind:value="selectedApplicationId">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="updateApplicationState">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="section-admin d-flex flex-column">
+            <div class="section-details-recruiter">
+                <button type="button" class="card" data-bs-toggle="modal" data-bs-target="#vacancyPostModal">
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="d-flex flex-column media-body text-right">
+                                <h3></h3>
+                                <span>Nombre de la vacante: {{vacancies.jobVacancyTitle}}</span>
+                                <span>Experiencia requerida: {{vacancies.experienceRequired}}</span>
+                                <span>Sucursal: {{vacancies.branchOffice}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <section class="d-flex justify-content-end me-5">
+                <button @click="clearFilters" class="btn btn-success">Limpiar filtros</button>
+            </section>
+
+            <table class="table align-middle mb-0 bg-white mt-2">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Genero</th>
+                        <th>Estado civil</th>
+                        <th>Hijos</th>
+                        <th>Estado/residencia</th>
+                        <th>Salario</th>
+                        <th>Titulo</th>
+                        <th>Ver CV</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <form role="search">
+                                <input class="form-control me-2 bg-body-tertiary" type="search"
+                                    placeholder="Nombre, apellido, email" aria-label="Search" v-model="message">
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <div class="input-field">
+                                    <select v-model="filterSelectGender">
+                                        <option value="">Todos</option>
+                                        <option v-for="category in genderCategory" :value="category.description">{{ category.description }}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <div class="input-field">
+                                    <select v-model="filterSelectCivilStatus">
+                                        <option value="">Todos</option>
+                                        <option v-for="category in maritalStatusCategory" :value="category.description">{{ category.description }}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <div class="input-field">
+                                    <select v-model="filterSelectChildren">
+                                        <option value="">Todos</option>
+                                        <option v-for="options in yesOrNo">{{options}}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <input class="form-control me-2 bg-body-tertiary" type="search"
+                                    placeholder="Nombre, apellido, email" aria-label="Search" v-model="message">
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <div class="input-field">
+                                    <select v-model="filterSelectSalary">
+                                        <option value="">Todos</option>
+                                        <option v-for="category in salaryRangeCategory" :value="category.id">{{ category.description }}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <div class="input-field">
+                                    <select v-model="filterSelectTitle">
+                                        <option value="">Todos</option>
+                                        <option v-for="titles in titleUsers">{{ titles }}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr v-for="application in filterSeekersApplication" :key="users.id">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ application.seeker.firstName }}
+                                        {{application.seeker.lastName}}</p>
+                                    <p class="text-muted mb-0">{{application.seeker.email}}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{application.seeker.personalData &&
+                                application.seeker.personalData.length > 0 ?
+                                application.seeker.personalData[0].gender : '-'}}</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{application.seeker.personalData &&
+                                application.seeker.personalData.length > 0 ?
+                                application.seeker.personalData[0].civilStatus : '-'}}</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{application.seeker.personalData &&
+                                application.seeker.personalData.length > 0 ?
+                                application.seeker.personalData[0].children : '-'}}</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{application.seeker.personalData &&
+                                application.seeker.personalData.length > 0 ?
+                                application.seeker.personalData[0].stateResidence : '-'}}</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{application.seeker.otherDatas &&
+                                application.seeker.otherDatas.length > 0 ?
+                                application.seeker.otherDatas[0].salary : '-'}}</p>
+                        </td>
+                        <td>
+                            <p class="fw-normal mb-1">{{application.seeker.educations &&
+                                application.seeker.educations.length > 0 ?
+                                application.seeker.educations[0].title : '-'}}</p>
+                        </td>
+                        <td>
+                            <a :href="'./seekerCV.html?id='+application.seeker.id"><img
+                                    src="../../assets/img/contrato.png" alt="" class="icon-table"></a>
+                        </td>
+                        <td>
+                            <button type="button" class="button-modal" data-bs-toggle="modal"
+                                data-bs-target="#stateApplicationModal" :click="onModalOpen(application.id)">
+                                <p :class="{
+                                'recibido': application.stateApplication === 'Recibido',
+                                'curriculum': application.stateApplication === 'CURRICULUM_REVISADO',
+                                'entrevista': application.stateApplication === 'ENTREVISTA_PROGRAMADA',
+                                'bg-success': application.stateApplication === 'Recibido'
+                             }">{{ application.stateApplication }}</p>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <script src="../assets/scripts/adminRecruiter.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/scripts/dashboard.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+    <title>Perfil</title>
+</head>
+
+<body>
+
+    <div id="app" v-cloak>
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bx-menu'></i>
+                <span class="text mt-5"><img src="../assets/img/logoGarzon.png" alt="" style="width: 10rem;"></span>
+            </a>
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="./myhome.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Mi portal Garzón</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./selectOffices.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Ofertas laborales</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./mycv.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Mi Curriculum</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./myapplications.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Mis postulaciones</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="../web/profile.html">
+                        <i class='bx bxs-cog'></i>
+                        <span class="text">Mi perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="logout" @click="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+           
+            </nav>
+        </section>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                        <h1>Mi perfil</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Mi portal Garzón</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a href="#">Mi curriculum</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a href="#">Mis postulaciones</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Mi perfil</a>
+                        </li>
+                    </ul>
+                </div>
+                    <form class="p-5 button-delete" @submit.prevent="deleteAccount">
+                        <button type="submit" class="btn btn-danger">Eliminar cuenta</button>
+                    </form>
+            </div>
+
+            <section class="d-flex justify-content-center flex-wrap profile">
+                <div class="card me-5">
+                    <div class="card-body">
+                        Modificar contrasena
+                    </div>
+
+                    <form class="p-5" @submit.prevent="changePassword">
+                        <div class="mb-3">
+                            <label for="password1" class="form-label"> Contrasena Actual</label>
+                            <input type="password" class="form-control" id="password1" v-model="currentPassword">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password2" class="form-label">Nueva contrasena</label>
+                            <input type="password" class="form-control" id="password2" v-model="newPassword">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="password3" class="form-label">Repita la nueva contrasena</label>
+                            <input type="password" class="form-control" id="password3" v-model="confirmNewPassword">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+
+                <div class="card me-5">
+                    <div class="card-body">
+                        Modificar Email
+                    </div>
+
+                    <form class="p-5" @submit.prevent="changeEmail">
+                        <div class="mb-3">
+                            <label for="email1" class="form-label">Email Actual</label>
+                            <input type="email" class="form-control" id="email1" v-model="currentEmail">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email2" class="form-label">Nuevo email</label>
+                            <input type="email" class="form-control" id="email2" v-model="newEmail">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email3" class="form-label">Repita el nuevo email</label>
+                            <input type="email" class="form-control" id="email3" v-model="confirmNewEmail">
+                        </div>
+                        <button type="submit" class="btn btn-success">Submit</button>
+                    </form>
+                </div>
+            </section>
+
+
+        </main>
+    </div>
+    <!-- MAIN -->
+
+
+    <!-- CONTENT -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../assets/scripts/profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../assets/scripts/dashboard.js"></script>
+</body>
+
+</html>

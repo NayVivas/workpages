@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+    <title>Curriculum</title>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bx-menu'></i>
+                <span class="text mt-5"><img src="../assets/img/logoGarzon.png" alt="" style="width: 10rem;"></span>
+            </a>
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="./myhome.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Mi portal Garzón</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./selectOffices.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Ofertas laborales</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./mycv.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Mi Curriculum</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./myapplications.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Mis postulaciones</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="../seeker/profile.html">
+                        <i class='bx bxs-cog'></i>
+                        <span class="text">Mi perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="logout" @click="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+            </nav>
+        </section>
+        <!-- NAVBAR -->
+
+        <!-- MAIN -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Mi curriculum</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Mi portal Garzón</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Mi curriculum</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal Personal Data Edit-->
+        <div class="modal fade" id="personalDataModal" tabindex="-1" aria-labelledby="personalDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="personalDataModalLabel">Datos Personales</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="container-form">
+                                <form action="#" v-on:submit.prevent method="post">
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="name">Nombres</label>
+                                                <input type="text" id="name" placeholder="Nombres" v-model="firstName">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="lastname">Apellidos</label>
+                                                <input type="text" id="lastname" placeholder="Apellidos"
+                                                    v-model="lastName">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="email">Correo electronico</label>
+                                                <input type="email" id="email" placeholder="name@example.com"
+                                                    v-model="email">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="birthday">Fecha de nacimiento</label>
+                                                <input type="date" id="birthday" placeholder="Fecha de nacimiento"
+                                                    v-model="birthday" datepicker datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="document">Documento</label>
+                                                <input type="text" id="document" placeholder="documento"
+                                                    v-model="document">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Genero</label>
+                                                <select v-model="gender">
+                                                    <option disabled selected>Seleccione el genero</option>
+                                                    <option v-for="gender in genderCategory">{{gender.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="phone1">Telefono(Hogar)</label>
+                                                <input type="text" id="phone1" placeholder="Numero de casa"
+                                                    v-model="phoneOne">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="phone2">Telefono(Celular)</label>
+                                                <input type="text" id="phone2" placeholder="Numero de celular"
+                                                    v-model="phoneTwo">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="phone1">Estado civil</label>
+                                                <select v-model="civilStatus">
+                                                    <option v-for="statusCivil in maritalStatusCategory">
+                                                        {{statusCivil.description}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="d-flex justify-content-between mx-5">
+                                                <div>
+                                                    <label>Tienes hijos?</label>
+                                                </div>
+                                                <div>
+                                                    <label for="yes">
+                                                        <input class="form-check-input" type="radio" name="yes" id="yes"
+                                                            v-model="children" value="SI">Si</label>
+                                                </div>
+                                                <div class="form-check">
+                                                    <label for="no">No</label>
+                                                    <input class="form-check-input ms-4" type="radio" name="no" id="no"
+                                                        v-model="children" value="NO">
+                                                </div>
+                                            </div>
+                                            <div class="input-field ms-5">
+                                                <label for="amountChildren ms-5">Cuantos?</label>
+                                                <input type="text" name="numberChildren" id="amountChildren"
+                                                    v-model="amountChildren" placeholder="Cuantos hijos tienes?">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="ageChildren">Edad de tus hijos?
+                                                </label>
+                                                <input type="text" name="ageChildren" id="ageChildren"
+                                                    v-model="ageChildren" placeholder="ejem 2, 4, 5">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="address"></label>
+                                                <input type="text" id="address" placeholder="Direccion"
+                                                    v-model="address">
+                                            </div>
+
+                                            <div class="input-field">
+                                                <label for="state"></label>
+                                                <input type="text" id="state" placeholder="Estado"
+                                                    v-model="stateResidence">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="Pais"></label>
+                                                <input type="text" id="Pais" placeholder="Pais" v-model="cityResidence">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="editPersonalData">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Educations Post-->
+        <div class="modal fade" id="educationsPostModal" tabindex="-1" aria-labelledby="educationsPostModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="educationsPostModalLabel">Formación académica</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form educations">
+                                <form action="#" v-on:submit.prevent method="post">
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="title">Titulo</label>
+                                                <input type="text" id="title" placeholder="Titulo" v-model="title">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="school">Centro educativo</label>
+                                                <input type="text" id="school" placeholder="Nombre del colegio"
+                                                    v-model="school">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Tipo de estudio</label>
+                                                <select v-model="typeStudy">
+                                                    <option v-for="typeS in studyTypeCategory">{{typeS.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Area de estudio</label>
+                                                <select v-model="areaStudy">
+                                                    <option v-for="areaS in activityCategory">{{areaS.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Estado</label>
+                                                <select v-model="state">
+                                                    <option v-for="stageS in educationStatusCategory">
+                                                        {{stageS.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label class="form-label"></label>
+                                                <input type="text" class="form-control" id="initEducation"
+                                                    placeholder="Pais" v-model="countryEducation">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label class="form-label">Desde</label>
+                                                <input type="date" class="form-control" id="initEducation"
+                                                    placeholder="Fecha de inicio" v-model="initEducation" datepicker
+                                                    datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                            <div class="input-field">
+                                                <label class="form-label">Hasta</label>
+                                                <input type="date" class="form-control" id="endEducation"
+                                                    placeholder="Fecha de termino" v-model="endEducation" datepicker
+                                                    datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="postEducations">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Education edit -->
+        <div class="modal fade" id="educationsDataModal" tabindex="-1" aria-labelledby="educationsDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="educationsDataModalLabel">Formación académica</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form educations">
+                                <form action="#" v-on:submit.prevent method="post">
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="title">Titulo</label>
+                                                <input type="text" id="title" placeholder="Titulo" v-model="title">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="school">Centro educativo</label>
+                                                <input type="text" id="school" placeholder="Nombre del colegio"
+                                                    v-model="school">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Tipo de estudio</label>
+                                                <select v-model="typeStudy">
+                                                    <option v-for="typeS in studyTypeCategory">{{typeS.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Area de estudio</label>
+                                                <select v-model="areaStudy">
+                                                    <option v-for="areaS in activityCategory">{{areaS.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Estado</label>
+                                                <select v-model="state">
+                                                    <option v-for="stageS in educationStatusCategory">
+                                                        {{stageS.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label class="form-label"></label>
+                                                <input type="text" class="form-control" id="initEducation"
+                                                    placeholder="Pais" v-model="countryEducation">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label class="form-label">Desde</label>
+                                                <input type="date" class="form-control" id="initEducation"
+                                                    placeholder="Fecha de inicio" v-model="initEducation" datepicker
+                                                    datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                            <div class="input-field">
+                                                <label class="form-label">Hasta</label>
+                                                <input type="date" class="form-control" id="endEducation"
+                                                    placeholder="Fecha de termino" v-model="endEducation" datepicker
+                                                    datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" @click="deleteEducations">Eliminar</button>
+                        <button type="button" class="btn btn-success" @click="editEducations">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal JobExperience post-->
+        <div class="modal fade" id="jobExperienceDataPostModal" tabindex="-1"
+            aria-labelledby="jobExperienceDataPostModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="jobExperienceDataPostModalLabel">Experiencia
+                            laboral</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form">
+                                <form action="#" v-on:submit.prevent method="post">
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="company">Empresa</label>
+                                                <input type="text" id="company" placeholder="Compania"
+                                                    v-model="company">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Actividad de la empresa</label>
+                                                <select v-model="activityCompany">
+                                                    <option v-for="activityco in activityCategory">
+                                                        {{activityco.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="job">Cargo</label>
+                                                <input type="text" id="job" placeholder="Puesto de trabajo"
+                                                    v-model="job">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Nivel de experiencia</label>
+                                                <select v-model="levelExperience">
+                                                    <option v-for="experience in experienceLevelCategory">
+                                                        {{experience.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Area del cargo</label>
+                                                <select v-model="areaJob">
+                                                    <option v-for="areaj in activityCategory">{{areaj.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="countryExperience">Pais
+                                                </label>
+                                                <input type="text" name="numberChildren" id="countryExperience"
+                                                    placeholder="Pais" v-model="countryExperience">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label class="form-label">Desde</label>
+                                                <input type="date" id="initEducation" placeholder="Fecha de inicio"
+                                                    v-model="initExperience" datepicker datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                            <div class="input-field">
+                                                <label class="form-label">Hasta</label>
+                                                <input type="date" id="endEducation" placeholder="Fecha de termino"
+                                                    v-model="endExperience" datepicker datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Funciones del cargo</label>
+                                                <textarea name="" id="" class="input-input" required
+                                                    v-model="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="postJobExperience">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal JobExperience edit-->
+        <div class="modal fade" id="jobExperienceDataModal" tabindex="-1" aria-labelledby="jobExperienceDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="jobExperienceDataModalLabel">Experiencia laboral
+                        </h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form">
+                                <form action="#" v-on:submit.prevent method="post">
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="company">Empresa</label>
+                                                <input type="text" id="company" placeholder="Compania"
+                                                    v-model="company">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Actividad de la empresa</label>
+                                                <select v-model="activityCompany">
+                                                    <option v-for="activityco in activityCategory">
+                                                        {{activityco.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="job">Cargo</label>
+                                                <input type="text" id="job" placeholder="Puesto de trabajo"
+                                                    v-model="job">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Nivel de experiencia</label>
+                                                <select v-model="levelExperience">
+                                                    <option v-for="experience in experienceLevelCategory">
+                                                        {{experience.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Area del cargo</label>
+                                                <select v-model="areaJob">
+                                                    <option v-for="areaj in activityCategory">{{areaj.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="countryExperience">Pais
+                                                </label>
+                                                <input type="text" name="numberChildren" id="countryExperience"
+                                                    placeholder="Pais" v-model="countryExperience">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label class="form-label">Desde</label>
+                                                <input type="date" id="initEducation" placeholder="Fecha de inicio"
+                                                    v-model="initExperience" datepicker datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                            <div class="input-field">
+                                                <label class="form-label">Hasta</label>
+                                                <input type="date" id="endEducation" placeholder="Fecha de termino"
+                                                    v-model="endExperience" datepicker datepicker-format="mm/dd/yyyy">
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Funciones del cargo</label>
+                                                <textarea name="" id="" class="input-input" required
+                                                    v-model="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" @click="deleteExperience">Eliminar</button>
+                        <button type="button" class="btn btn-success" @click="editExperience">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal other Data edit -->
+        <div class="modal fade" id="otherDataModal" tabindex="-1" aria-labelledby="otherDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="otherDataModalLabel">Otros datos</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form form-other-data">
+                                <header>Otros datos</header>
+                                <form action="#" v-on:submit.prevent method="post">
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Puesto al que aspiras</label>
+                                                <select v-model="jobAspires">
+                                                    <option v-for="jobaspires in desiredPositionCategory">
+                                                        {{jobaspires.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Salario pretendido</label>
+                                                <select aria-label="Default select example" v-model="salary">
+                                                    <option v-for="salaries in salaryRangeCategory">
+                                                        {{salaries.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Transporte</label>
+                                                <select aria-label="Default select example" v-model="transport">
+                                                    <option v-for="typeT in transportTypeCategory">
+                                                        {{typeT.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="fields">
+                                            <div class="d-flex flex-column">
+                                                <div>
+                                                    <label class="label-title">Trabajaste antes en la
+                                                        Empresa?</label>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <label for="disability1">
+                                                            <input class="form-check-input ms-5" type="radio"
+                                                                name="disability" id="disability1"
+                                                                v-model="jobThisCompany" value="SI">Si</label>
+                                                    </div>
+                                                    <div>
+                                                        <label for="disability2">
+                                                            <input class="form-check-input ms-4" type="radio"
+                                                                name="disability" id="disability2"
+                                                                v-model="jobThisCompany" value="NO">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-field ms-5">
+                                                <label for="">Sucursal</label>
+                                                <select v-model="branchOffice">
+                                                    <option v-for="branchOffice in branchCategory">
+                                                        {{branchOffice.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Razon por la cual te retiraste?</label>
+                                                <select aria-label="Default select example"
+                                                    v-model="reasonForResignation">
+                                                    <option v-for="reasonForResignation in retirementReasonCategory">
+                                                        {{reasonForResignation.description}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="d-flex flex-column me-4">
+                                                <div>
+                                                    <label class="label-title">Tienes alguna
+                                                        discapacidad?</label>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <label for="disability1">
+                                                            <input class="form-check-input ms-5" type="radio"
+                                                                name="disability" id="disability1" v-model="disability"
+                                                                value="SI">Si</label>
+                                                    </div>
+                                                    <div>
+                                                        <label for="disability2">
+                                                            <input class="form-check-input ms-4" type="radio"
+                                                                name="disability" id="disability2" v-model="disability"
+                                                                value="NO">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-field ms-5">
+                                                <label>Tipo de discapacidad</label>
+                                                <select v-model="typeDisability">
+                                                    <option v-for="typedisability in disabilityTypeCategory">
+                                                        {{typedisability.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="">Disponibilidad</label>
+                                                <select v-model="availability">
+                                                    <option v-for="availability in workAvailabilityCategory">
+                                                        {{availability.description}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="fields">
+
+                                            <div class="input-field">
+                                                <label>Tipo</label>
+                                                <select v-model="typeJob">
+                                                    <option v-for="typeJ in jobTypeCategory">{{typeJ.description}}
+                                                    </option>
+                                                </select>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <div>
+                                                    <label class="label-title">Horarios rotativos</label>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <label for="disability1">
+                                                            <input class="form-check-input ms-5" type="radio"
+                                                                name="disability" id="disability1" v-model="rotary"
+                                                                value="SI">Si</label>
+                                                    </div>
+                                                    <div>
+                                                        <label for="disability2">
+                                                            <input class="form-check-input ms-4" type="radio"
+                                                                name="disability" id="disability2" v-model="rotary"
+                                                                value="NO">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex flex-column">
+                                                <div>
+                                                    <label class="label-title">Fines de semana</label>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <label for="disability1">
+                                                            <input class="form-check-input ms-5" type="radio"
+                                                                name="disability" id="disability1" v-model="jobWeekend"
+                                                                value="SI">Si</label>
+                                                    </div>
+                                                    <div>
+                                                        <label for="disability2">
+                                                            <input class="form-check-input ms-4" type="radio"
+                                                                name="disability" id="disability2" v-model="jobWeekend"
+                                                                value="NO">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="fields">
+                                            <div class="d-flex flex-column">
+                                                <div>
+                                                    <label class="label-title">Conoces a alguien que trabaja
+                                                        en la empresa?</label>
+                                                </div>
+                                                <div class="d-flex">
+                                                    <div>
+                                                        <label for="disability1">
+                                                            <input class="form-check-input ms-5" type="radio"
+                                                                name="disability" id="disability1" v-model="meetPeople"
+                                                                value="SI">Si</label>
+                                                    </div>
+                                                    <div>
+                                                        <label for="disability2">
+                                                            <input class="form-check-input ms-4" type="radio"
+                                                                name="disability" id="disability2" v-model="meetPeople"
+                                                                value="NO">No</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Tipo de relacion</label>
+                                                <select v-model="relationship">
+                                                    <option v-for="relationship in personalRelationshipCategory">
+                                                        {{relationship.description}}</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="fields">
+                                                <div class="d-flex flex-column">
+                                                    <div>
+                                                        <label class="label-title">Estuviste en algun
+                                                            proceso de seleccion de la empresa?</label>
+                                                    </div>
+                                                    <div class="d-flex">
+                                                        <div>
+                                                            <label for="disability1">
+                                                                <input class="form-check-input ms-5" type="radio"
+                                                                    name="disability" id="disability1"
+                                                                    v-model="selectionStage" value="SI">Si</label>
+                                                        </div>
+                                                        <div>
+                                                            <label for="disability2">
+                                                                <input class="form-check-input ms-4" type="radio"
+                                                                    name="disability" id="disability2"
+                                                                    v-model="selectionStage" value="NO">No</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="input-field">
+                                                    <label for=""></label>
+                                                    <select aria-label="Default select example" v-model="stage">
+                                                        <option v-for="stage in applicationStateCategory">
+                                                            {{stage.description}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="editOtherData">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal skills edit-->
+        <div class="modal fade" id="skillsModal" tabindex="-1" aria-labelledby="skillsModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="skillsModalLabel">Habilidades</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form">
+                                <header>Habilidades e idiomas</header>
+                                <form class="timeline-body" action="#" v-on:submit.prevent method="post">
+                                    <div class="timeline-content">
+                                        <div class="details personal">
+                                            <div class="d-flex">
+                                                <div class="input-field">
+                                                    <label>Habilidades blandas</label>
+                                                    <textarea name="" id="" class="input-input-textarea" required
+                                                        v-model="softSkills"></textarea>
+                                                </div>
+                                                <div class="input-field">
+                                                    <label>Habilidades tecnicas</label>
+                                                    <textarea name="" id="" class="input-input-textarea" required
+                                                        v-model="technicalSkills"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-success" @click="editSkills">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal language post-->
+        <div class="modal fade" id="languagesPostModal" tabindex="-1" aria-labelledby="languagesPostModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="languagesPostModalLabel">Idiomas</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form">
+                                <form class="timeline-body" action="#" v-on:submit.prevent method="post">
+                                    <span class="title">Idiomas</span>
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Idioma</label>
+                                                <select required v-model="languages">
+                                                    <option disabled selected>Seleccione el idioma</option>
+                                                    <option v-for="lenguaje in languageCategory">
+                                                        {{lenguaje.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Nivel escrito</label>
+                                                <select required v-model="writeLevel">
+                                                    <option disabled selected>Seleccione el nivel escrito
+                                                    </option>
+                                                    <option v-for="levelL in languageLevelCategory">
+                                                        {{levelL.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Nivel oral</label>
+                                                <select required v-model="oralLevel">
+                                                    <option disabled selected>Seleccione el nivel oral</option>
+                                                    <option v-for="levelL in languageLevelCategory">
+                                                        {{levelL.description}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="postLanguages">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal language edit-->
+        <div class="modal fade" id="languagesModal" tabindex="-1" aria-labelledby="languagesModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="languagesModalLabel">Idiomas</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center align-items-center">
+                            <div class="container-form">
+                                <form class="timeline-body" action="#" v-on:submit.prevent method="post">
+                                    <span class="title">Idiomas</span>
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Idioma</label>
+                                                <select required v-model="languages">
+                                                    <option disabled selected>Seleccione el lenguaje</option>
+                                                    <option v-for="lenguaje in languageCategory">
+                                                        {{lenguaje.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Nivel escrito</label>
+                                                <select required v-model="writeLevel">
+                                                    <option disabled selected>Seleccione el nivel escrito
+                                                    </option>
+                                                    <option v-for="levelL in languageLevelCategory">
+                                                        {{levelL.description}}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Nivel oral</label>
+                                                <select required v-model="oralLevel">
+                                                    <option disabled selected>Seleccione el nivel oral</option>
+                                                    <option v-for="levelL in languageLevelCategory">
+                                                        {{levelL.description}}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-danger" @click="deleteLanguages">Eliminar</button>
+                        <button type="button" class="btn btn-success" @click="editLanguages">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal edit Image Profile -->
+        <div class="modal fade" id="ModalEditImage" tabindex="-1" aria-labelledby="ModalEditImageLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container-form container-form-image">
+                            <header>Imagen de perfil</header>
+                            <div class="d-flex flex-column align-items-center">
+                                <div v-if="userImageUrl">
+                                    <img :src="userImageUrl" alt="Preview Image profile" class="imgProfile mb-2">
+                                </div>
+                                <div v-else>
+                                    <img :src="defaultImageUrl" alt="Imagen por defecto" class="imgProfile mb-2">
+                                </div>
+                                <form action="#" method="post" enctype="multipart/form-data" v-on:submit.prevent
+                                    class="d-flex flex-column align-items-center">
+                                    <input type="file" @change="select_file">
+                                    <button class="btn btn-success mt-2" type="button" @click="uploadImage">Editar
+                                        imagen</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="d-flex flex-wrap section-cv">
+            <div class="d-flex flex-column">
+                <div class="login-box-two mb-2">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="image-container">
+                            <img :src="userImageUrl" alt="Imagen de perfil del usuario" class="imgProfile mb-2 mt-2">
+                            <button class="edit-button" type="button" data-bs-toggle="modal"
+                                data-bs-target="#ModalEditImage">Editar imagen</button>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="card-body card-body-others">
+                            <div class="d-flex flex-column">
+                                <div>
+                                    <h3 class="text-center">{{dataPersonal.firstName}} {{dataPersonal.lastName}}
+                                    </h3>
+                                    <h4 class="mb-2"></h4>
+                                </div>
+                                <div class="d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="mb-2">Fecha de nacimineto:
+                                            <span class="text-muted">{{dataPersonal.birthday}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Género:
+                                            <span class="text-muted">{{dataPersonal.gender}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Estado civil:
+                                            <span class="text-muted">{{dataPersonal.civilStatus}}</span>
+                                        </h5>
+                                        <div class="d-flex justify-content-between">
+                                            <h5 class="mb-2">Documento:
+                                                <span class="text-muted">{{dataPersonal.document}}</span>
+                                            </h5>
+                                            <div class="">
+                                                <button type="button" class="btn btn-edit" data-bs-toggle="modal"
+                                                    data-bs-target="#personalDataModal"
+                                                    @click="this.link=changePersonalData(dataPersonal)">
+                                                    <img src="../assets/img/lapiz.png" alt="">
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Datos de contacto</h4>
+                        </div>
+                        <div class="card-body card-body-others">
+                            <h5 class="mb-2">Email: <span class="text-muted">{{dataPersonal.email}}</span></h5>
+                            <h5 class="mb-2">Teléfono (Hogar):
+                                <span class="text-muted">{{dataPersonal.phoneOne}}</span>
+                            </h5>
+                            <h5 class="mb-2">Teléfono (Celular):
+                                <span class="text-muted">{{dataPersonal.phoneTwo}}</span>
+                            </h5>
+                            <h5 class="mb-2">Dirección: <span class="text-muted">{{dataPersonal.address}}</span>
+                                <span class="text-muted">{{dataPersonal.stateResidence}}</span> <span
+                                    class="text-muted">{{dataPersonal.cityResidence}}</span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-column content">
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Educación</h4>
+                        </div>
+                        <div class="mb-2" v-for="dataEducation in dataEducations">
+                            <div class="card-body card-body-items">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="mb-2">
+                                        <span>{{dataEducation.title}}</span>
+                                    </h3>
+                                    <div>
+                                        <button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#educationsPostModal">
+                                            <img src="../assets/img/mas.png" alt="">
+                                        </button>
+
+                                        <button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#educationsDataModal">
+                                            <img src="../assets/img/lapiz.png" alt="edit"
+                                                @click="changeEducation(dataEducation)"></button>
+                                    </div>
+                                </div>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataEducation.school}}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataEducation.typeStudy}} -
+                                        {{dataEducation.state}}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataEducation.initEducation}} /
+                                        {{dataEducation.endEducation}} , {{dataEducation.countryEducation}}</span>
+                                </h5>
+                                <h4></h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Experiencia laboral</h4>
+                        </div>
+                        <div class="mb-2" v-for="dataExperience in dataExperiences">
+                            <div class="card-body card-body-items">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="mb-2">
+                                        <span>{{dataExperience.job}}</span>
+                                    </h3>
+                                    <div>
+                                        <button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#jobExperienceDataPostModal">
+                                            <img src="../assets/img/mas.png" alt="">
+                                        </button>
+                                        <button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#jobExperienceDataModal"
+                                            @click="this.link=changeJobExperience(dataExperience)">
+                                            <img src="../assets/img/lapiz.png" alt=""></button>
+
+                                    </div>
+                                </div>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataExperience.company}}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataExperience.initExperience}} /
+                                        {{dataExperience.endExperience}}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataExperience.description}}</span>
+                                </h5>
+                                <h4></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Otros datos</h4>
+                        </div>
+                        <div class="card-body card-body-items">
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <button type="button" class="btn" data-bs-toggle="modal"
+                                        data-bs-target="#otherDataModal"
+                                        @click="this.link=changeOtherData(dataOthersData)">
+                                        <img src="../assets/img/lapiz.png" alt="">
+                                </div>
+                            </div>
+                            <h5 class="mb-2">A que puesto aspira:
+                                <span class="text-muted">{{dataOthersData.jobAspires}}</span>
+                            </h5>
+                            <h5 class="mb-2">Salario pretendido:
+                                <span class="text-muted">{{dataOthersData.salary}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tiene alguna discapacidad:
+                                <span class="text-muted">{{dataOthersData.disability}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tipo de discapacidad:
+                                <span class="text-muted">{{dataOthersData.typeDisability}}</span>
+                            </h5>
+                            <h5 class="mb-2">Trabajo en la empresa:
+                                <span class="text-muted">{{dataOthersData.jobThisCompany}}</span>
+                            </h5>
+                            <h5 class="mb-2">En cual sucursal:
+                                <span class="text-muted">{{dataOthersData.branchOffice}}</span>
+                            </h5>
+                            <h5 class="mb-2">Razon por la que se retiro:
+                                <span class="text-muted">{{dataOthersData.reasonForResignation}}</span>
+                            </h5>
+                            <h5 class="mb-2">Estuvo en algun proceso de seleccion:
+                                <span class="text-muted">{{dataOthersData.selectionStage}}</span>
+                            </h5>
+                            <h5 class="mb-2">Hasta que parte del proceso:
+                                <span class="text-muted">{{dataOthersData.stage}}</span>
+                            </h5>
+                            <h5 class="mb-2">Disponibilidad:
+                                <span class="text-muted">{{dataOthersData.availability}}</span>
+                            </h5>
+                            <h5 class="mb-2">Preferencia laboral:
+                                <span class="text-muted">{{dataOthersData.typeJob}}</span>
+                            </h5>
+                            <h5 class="mb-2">Disponibilidad de horarios rotativos:
+                                <span class="text-muted">{{dataOthersData.rotary}}</span>
+                            </h5>
+                            <h5 class="mb-2">Disponibilidad para trabajar fin de semana:
+                                <span class="text-muted">{{dataOthersData.jobWeekend}}</span>
+                            </h5>
+                            <h5 class="mb-2">Conoces a alguien que trabaje en la empresa:
+                                <span class="text-muted">{{dataOthersData.meetPeople}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tipo de relacion:
+                                <span class="text-muted">{{dataOthersData.relationship}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tipo de transporte que utilizaras en caso de trabajar en la
+                                empresa:
+                                <span class="text-muted">{{dataOthersData.transport}}</span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Habilidades</h4>
+                        </div>
+                        <div class="card-body card-body-others">
+                            <div class="d-flex justify-content-end">
+                                <div>
+                                    <button type="button" class="btn btn-edit" data-bs-toggle="modal"
+                                        data-bs-target="#skillsModal" @click="this.link=changeSkills(dataSkill)">
+                                        <img src="../assets/img/lapiz.png" alt="">
+                                </div>
+                            </div>
+                            <h5 class="card-title">Habilidades tecnicas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{dataSkill.technicalSkills}}</h6>
+                            <h4></h4>
+                            <h5 class="card-title">Habilidades blandas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{dataSkill.softSkills}}</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Idiomas</h4>
+                        </div>
+                        <div class="mb-2" v-for="datalanguage in datalanguages">
+                            <div class="card-body card-body-others">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="mb-2">
+                                        <span>{{datalanguage.languages}}</span>
+                                    </h3>
+                                    <div>
+                                        <button type="button" class="btn" data-bs-toggle="modal"
+                                            data-bs-target="#languagesPostModal">
+                                            <img src="../assets/img/mas.png" alt="">
+                                        </button>
+                                        <button type="button" class="btn btn-edit" data-bs-toggle="modal"
+                                            data-bs-target="#languagesModal"
+                                            @click="this.link=changeLanguages(datalanguage)">
+                                            <img src="../assets/img/lapiz.png" alt="">
+                                    </div>
+                                </div>
+                                <h5 class="mb-2">Nivel escrito:
+                                    <span class="text-muted">{{datalanguage.writeLevel}}</span>
+                                </h5>
+                                <h5 class="mb-2">Nivel oral:
+                                    <span class="text-muted">{{datalanguage.oralLevel}}</span>
+                                </h5>
+                                <h4></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="login-box-two mt-2">
+                        <div v-if="showForm">
+                            <form class="d-flex flex-column justify-content-center align-items-center"
+                                v-on:submit.prevent>
+                                <img src="../assets/img/subir.png" alt="subir pdf" style="width: 5rem;"
+                                    class="mt-2 mb-2">
+                                <input type="file" ref="fileInput" @change="onFileChange" id="inputFile" name="file">
+                                <button v-if="!hasDatabaseFile && !hasFile && !fileLoaded" @click.prevent="uploadFile"
+                                    class="uploadFile mt-2">Cargar archivo</button>
+                                    <div class="d-flex">
+                                <button v-if="hasDatabaseFile || hasFile || fileLoaded" @click.prevent="uploadFile"
+                                    class="uploadFile mt-2 me-2">Editar</button>
+                                    </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <!-- MAIN -->
+
+
+    <!-- CONTENT -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../assets/scripts/users.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script src="../assets/scripts/dashboard.js"></script>
+    </head>
+</body>
+
+</html>

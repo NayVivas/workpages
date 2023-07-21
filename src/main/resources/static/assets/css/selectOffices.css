@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+@font-face {
+  font-family: Title;
+  src: url("../fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+  font-family: Sub-Title;
+  src: url("../fonts/Poppins-Regular.ttf");
+}
+
+@font-face {
+  font-family: Paragraph;
+  src: url("../fonts/Poppins-Light.ttf");
+}
+
+@font-face {
+  font-family: AnchorNavbar;
+  src: url("../fonts/Poppins-Bold.ttf");
+}
+
+
+h2 {
+  font-family: var(--font-title);
+}
+
+h4 {
+  font-family: var(--font-subtitle);
+}
+
+p {
+  font-family: var(--font-paragraph)
+}
+
+:root {
+  --main: hsl(234, 40%, 25%);
+  --title: black;
+  --secondary: #009eb8;
+  --paragraph: #4b4b4c;
+  --font-title: Title;
+  --font-subtitle: Sub-Title;
+  --font-paragraph: Paragraph;
+  --font-navbar: AnchorNavbar;
+  --color-primary: #198754;
+  --color-secundary: gold;
+  --color-footer: #24262b;
+}
+
+[v-cloak]{
+  display: none;
+}
+
+body {
+  overflow-x: hidden;
+  margin: 0;
+}
+
+.btn-success {
+  background-color: rgb(25,135,84);
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-family: var(--font-navbar);
+  font-size: 1.1rem;
+}
+
+/* Line Separators CSS */
+.line-separator {
+  display: block;
+  width: 50%;
+  height: 2rem;
+  text-align: center;
+  margin: 20px auto;
+  border-bottom: 1px solid grey;
+}
+
+.first-wrap {
+  height: 100%;
+  width: 100vw;
+  background: #ffffff url("../img/Retail-de-supermercado.png") no-repeat fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+  margin-bottom: -2rem;
+}
+
+.second-wrap {
+  height: 100%;
+  width: 100vw;
+  background: #ffffff url("../img/garzonnhiper.jpg") no-repeat fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.third-wrap {
+  height: 100%;
+  width: 100vw;
+  background: #ffffff url("https://images.unsplash.com/photo-1443827423664-eac70d49dd0d?fit=crop&fm=jpg&h=950&q=80&w=1920") no-repeat fixed;
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.first-div {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  background-color: transparent;
+}
+
+.first-div .first-inner-div {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #fff;
+  font-size: 20px;
+}
+
+.first-div .first-inner-div .down-arrow {
+  font-size: 40px;
+  color: #fff;
+}
+
+.first-div .first-inner-div p {
+  padding: 20px;
+  letter-spacing: 0.45em;
+  text-transform: uppercase;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.second-div {
+  height: 50vh;
+  width: 100vw;
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.third-div {
+  display: table;
+  height: 50vh;
+  width: 100vw;
+  background-color: transparent;
+}
+
+#back-to-top {
+  position: fixed;
+  bottom: 40px;
+  right: 40px;
+  z-index: 9999;
+  width: 32px;
+  height: 32px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #ffffff;
+  color: #000;
+  cursor: pointer;
+  border: 0;
+  border-radius: 2px;
+  text-decoration: none;
+  transition: opacity 0.2s ease-out;
+  opacity: 0;
+}
+
+#back-to-top:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+  color: #000;
+}
+
+#back-to-top.show {
+  opacity: 1;
+}
+
+.new-update {
+  padding: 20px;
+  text-align: center;
+}
+
+.card {
+  padding: 1rem;
+  width: 25vw;
+  height: 12rem;
+  display: flex !important;
+}
+
+.section-vacancy {
+  margin-left: 5rem;
+}
+
+/* Resize in Mobile View */
+@media (min-width: 0) and (max-width: 767px) {
+  p,
+  .body-text {
+    font-size: 10px !important;
+  }
+  .down-arrow {
+    font-size: 20px !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  p,
+  .body-text {
+    font-size: 15px !important;
+  }
+  .down-arrow {
+    font-size: 30px !important;
+  }
+}

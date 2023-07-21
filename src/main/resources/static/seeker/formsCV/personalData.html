@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="../../assets/css/formsCV.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+
+  <div id="app" v-cloak>
+
+    <header>
+
+      <!-- Breadcrumb -->
+      <nav aria-label="breadcrumb" class="ms-5 mt-5">
+        <ul class="breadcrumb">
+          <li class="breadcrumb-item">Home</li>
+          <li class="breadcrumb-item active" aria-current="page">Datos Personales</li>
+        </ul>
+      </nav>
+      <!-- Breadcrumb -->
+
+      <div v-if="showMessage">
+        <p>¿Deseas reanudar desde donde lo dejaste o restablecer el progreso?</p>
+        <button @click="reanudarProgreso">Reanudar</button>
+        <button @click="restablecerProgreso">Restablecer</button>
+      </div>
+
+      <section class="d-flex justify-content-center align-items-center flex-wrap">
+
+        <!--  <div class="container-form container-form-image">
+          <header>Imagen de perfil</header>
+          <div class="d-flex flex-column align-items-center">
+            <img ref="image" :src="imageUrl || '/static/images/default.jpg'" alt="Preview Image profile" class="imgProfile mb-2">
+            <form action="#" method="post" enctype="multipart/form-data" v-on:submit.prevent class="d-flex flex-column align-items-center">
+              <input id="file" type="file" name="file" @change="select_file" />
+              <button v-if="!imageUploaded" class="btn btn-success" type="submit" @click="uploadImage">Subir imagen</button>
+              <button v-else class="btn btn-success" type="button" @click="editProfileImage">Editar imagen</button>
+            </form>
+          </div>
+        </div> -->
+
+        <div class="container-form container-form-image">
+          <header>Imagen de perfil</header>
+          <div class="d-flex flex-column align-items-center">
+            <div v-if="userImageUrl">
+              <img :src="userImageUrl" alt="Preview Image profile" class="imgProfile mb-2">
+            </div>
+            <div v-else>
+              <img :src="defaultImageUrl" alt="Imagen por defecto" class="imgProfile mb-2">
+            </div>
+            <form action="#" method="post" enctype="multipart/form-data" v-on:submit.prevent
+              class="d-flex flex-column align-items-center">
+              <input type="file" @change="select_file">
+              <button class="btn btn-success mt-2" type="submit" @click="uploadImage">Subir imagen</button>
+            </form>
+          </div>
+        </div>
+
+
+        <div class="container-form">
+          <header>Datos personales</header>
+          <form action="#" v-on:submit.prevent method="post">
+            <div>
+              <div class="fields">
+                <div class="input-field">
+                  <label for="name">Nombres</label>
+                  <input type="text" id="name" placeholder="Nombres" v-model="firstName">
+                </div>
+                <div class="input-field">
+                  <label for="lastname">Apellidos</label>
+                  <input type="text" id="lastname" placeholder="Apellidos" v-model="lastName">
+                </div>
+                <div class="input-field">
+                  <label for="email">Correo electronico</label>
+                  <input type="email" id="email" placeholder="name@example.com" v-model="email">
+                </div>
+              </div>
+
+              <div class="fields">
+                <div class="input-field">
+                  <label for="birthday">Fecha de nacimiento</label>
+                  <input type="date" id="birthday" placeholder="Fecha de nacimiento" v-model="birthday" datepicker
+                    datepicker-format="mm/dd/yyyy">
+                </div>
+                <div class="input-field">
+                  <label for="document">Documento</label>
+                  <input type="text" id="document" placeholder="documento" v-model="document">
+                </div>
+                <div class="input-field">
+                  <label>Género</label>
+                  <select v-model="gender">
+                    <option value="">Seleccione una categoría</option>
+                    <option v-for="category in genderCategory" :value="category.description">{{ category.description }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="fields">
+                <div class="input-field">
+                  <label for="phone1">Teléfono(Hogar)</label>
+                  <input type="text" id="phone1" placeholder="Numero de casa" v-model="phoneOne">
+                </div>
+                <div class="input-field">
+                  <label for="phone2">Teléfono(Celular)</label>
+                  <input type="text" id="phone2" placeholder="Numero de celular" v-model="phoneTwo">
+                </div>
+                <div class="input-field">
+                  <label for="phone1">Estado civil</label>
+                  <select v-model="civilStatus">
+                    <option value="">Seleccione una categoría</option>
+                    <option v-for="category in maritalStatusCategory" :value="category.description">{{ category.description }}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="fields">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <label>Tienes hijos?</label>
+                  </div>
+                  <div>
+                    <label for="yes">
+                      <input class="form-check-input ms-5" type="radio" name="yes" id="yes" v-model="children"
+                        value="SI">Si</label>
+                  </div>
+                  <div class="form-check">
+                    <label for="no">No</label>
+                    <input class="form-check-input ms-4" type="radio" name="no" id="no" v-model="children" value="NO">
+                  </div>
+                </div>
+                <div class="input-field">
+                  <label for="amountChildren">Cuantos?</label>
+                  <input type="number" name="numberChildren" id="amountChildren" v-model="amountChildren"
+                    placeholder="Cuantos hijos tienes?" :class="{ 'disabled': children === 'NO' }"  :disabled="children === 'NO'">
+                </div>
+                <div class="input-field">
+                  <label for="ageChildren">Edad de tus hijos?
+                  </label>
+                  <input type="text" name="ageChildren" id="ageChildren" v-model="ageChildren"
+                    placeholder="ejem 2, 4, 5" :class="{ 'disabled': children === 'NO' }"  :disabled="children === 'NO'">
+                </div>
+              </div>
+
+
+              <div class="fields">
+                <div class="input-field">
+                  <label for="address">Dirección</label>
+                  <input type="text" id="address" placeholder="Direccion" v-model="address">
+                </div>
+
+                <div class="input-field">
+                  <label for="state">Ciudad</label>
+                  <input type="text" id="state" placeholder="Ciudad" v-model="cityResidence">
+                </div>
+                <div class="input-field">
+                  <label for="Pais">Estado</label>
+                  <input type="text" id="Pais" placeholder="Estado" v-model="stateResidence">
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end">
+                <div class="d-flex mb-3">
+                  <button type="submit" class="btn btn-success" @click="postPersonalData">Siguiente</button>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script src="../../assets/scripts/users.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>

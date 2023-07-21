@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sucursales</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="stylesheet" href="../assets/css/selectOffices.css">
+  <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <header class="main-header">
+      <div class="mobile-nav">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="../assets/img/logoGarzon.png" alt="">
+          </a>
+        </div>
+        <div class="nav-btn">
+          <div class="nav-btn-stroke"></div>
+          <div class="nav-btn-stroke"></div>
+          <div class="nav-btn-stroke"></div>
+        </div>
+      </div>
+      <div class="desktop-nav">
+        <div class="logo-container">
+          <a href="index.html">
+            <img src="./assets/img/logoGarzon.png" alt="">
+          </a>
+        </div>
+        <nav class="main-nav">
+          <ul class="nav-list">
+            <li class="nav-item">
+              <a href="../index.html" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+              <a href="./selectOffices.html" class="nav-link">Trabaja con nosotros</a>
+            </li>
+          </ul>
+        </nav>
+        <div>
+          <button v-if="isLoggedIn" @click="redirectToPage" class="button">Mi portal Garzon</button>
+          <button v-else @click="redirectToPage" class="button">Portal Web</button>
+        </div>
+      </div>
+    </header>
+    <div class="first-wrap">
+      <div class="first-div">
+        <div class="first-inner-div">
+          <p class="text-black">Elije la sucursal de tu preferencia</p>
+          <span class="text-black"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor"
+              class="bi bi-chevron-double-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd"
+                d="M1.646 6.646a.5.5 0 0 1 .708 0L8 12.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+              <path fill-rule="evenodd"
+                d="M1.646 2.646a.5.5 0 0 1 .708 0L8 8.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
+            </svg></span>
+          <a href="#anchor">
+            <span class="glyphicon glyphicon-circle-arrow-down down-arrow"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="second-wrap">
+      <div class="second-div" id="anchor">
+        <p class="body-text">
+          <span class="line-separator"></span>
+          <div class="d-flex flex-column justify-content-center align-items-center">
+            <select v-model="selectedBranchOffice" @change="loadVacancies" style="width: 18rem;">
+              <option value="">Selecciona una sucursal</option>
+              <option v-for="branchOffice in branchCategory" :key="branchOffice.id" :value="branchOffice">{{ branchOffice.description }}</option>
+            </select>
+            <span class="line-separator"></span>
+            <div v-if="selectedBranchOffice">
+              <div v-if="vacancies.length > 0" class="d-flex flex-wrap p-3 section-vacancy">
+                <div class="card ms-5 mb-2" v-for="vacancy in displayedVacancies" :key="vacancy.id">
+                  <h4>{{ vacancy.jobVacancyTitle }}</h4>
+                  <h6>{{ vacancy.branchOffice }}</h6>
+                  <h6>{{ vacancy.experienceRequired }}</h6>
+                  <h6>{{ vacancy.levelExperience }}</h6>
+                  <a :href="'vacancyDetails.html?id='+vacancy.id"><p>Ver detalles</p></a>
+                </div>
+              </div>
+              <div v-else>
+                No hay vacantes disponibles en esta sucursal
+              </div>
+              <div v-if="pageCount > 1" class="d-flex justify-content-center mt-3">
+                <button class="btn btn-secondary me-2" :disabled="page === 1" @click="changePage(page - 1)">
+                  Página anterior
+                </button>
+                <button class="btn btn-success" :disabled="page === pageCount" @click="changePage(page + 1)">
+                  Página siguiente
+                </button>
+              </div>
+            </div>
+          </div>
+        </p>
+      </div>
+      <div class="third-div"></div>
+    </div>
+    
+    <a href="#" id="back-to-top" title="Back to top">&uarr;</a>
+  
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+
+  <script src="../assets/scripts/users.js"></script>
+</body>
+
+</html>

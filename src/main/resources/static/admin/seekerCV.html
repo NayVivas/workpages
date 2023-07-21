@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bx-menu'></i>
+                <span class="text mt-5"><img src="../assets/img/logoGarzon.png" alt="" style="width: 10rem;"></span>
+            </a>
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="./myhome.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Mi portal Garzón</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./users.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./recruiters.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Reclutadores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./allVacancies.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Vacantes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./settings.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Herramientas</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="./profileAdmin.html">
+                        <i class='bx bxs-cog'></i>
+                        <span class="text">Mi perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="logout" @click="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+            </nav>
+        </section>
+        <!-- NAVBAR -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Detalles del postulante</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Mi portal Garzón</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Detalles del postulante</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="jobExperienceModal" tabindex="-1" aria-labelledby="jobExperienceModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="jobExperienceModalLabel">Detalle</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h3 class="mb-2">
+                            <span>{{dataExperience.job}}</span>
+                        </h3>
+                        <h5 class="mb-2">
+                            <span class="text-muted">{{dataExperience.company}}</span>
+                        </h5>
+                        <h5 class="mb-2">
+                            <span class="text-muted">{{dataExperience.initExperience}} /
+                                {{dataExperience.endExperience}}</span>
+                        </h5>
+                        <h5 class="mb-2">Actividad de la empresa:
+                            <span class="text-muted">{{dataExperience.activityCompany}}
+                        </h5>
+                        <h5 class="mb-2">Área del puesto:
+                            <span class="text-muted">{{dataExperience.areaJob}}
+                        </h5>
+                        <h5 class="mb-2">País:
+                            <span class="text-muted">{{dataExperience.countryExperience}}
+                        </h5>
+                        <h5 class="mb-2">Nivel de experiencia:
+                            <span class="text-muted">{{dataExperience.levelExperience}}</span>
+                        </h5>
+                        <h5 class="mb-2">
+                            <span class="text-muted">{{dataExperience.description}}</span>
+                        </h5>
+                        <h4></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <section class="d-flex flex-wrap section-cv">
+            <div class="d-flex flex-column">
+                <div class="login-box-two mb-2">
+                    <div class="d-flex flex-column align-items-center">
+                        <div class="image-container">
+                            <img :src="userImageUrl" alt="Imagen de perfil del usuario" class="imgProfile mb-2 mt-2">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column">
+                        <div class="card-body card-body-others" v-for="dataPersonal in personalDataId">
+                            <div class="d-flex flex-column">
+                                <div>
+                                    <h3 class="text-center">{{dataPersonal.firstName}} {{dataPersonal.lastName}}
+                                    </h3>
+                                    <h4 class="mb-2"></h4>
+                                </div>
+                                <div class="d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="mb-2">Fecha de nacimineto:
+                                            <span class="text-muted">{{dataPersonal.birthday}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Género:
+                                            <span class="text-muted">{{dataPersonal.gender}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Estado civil:
+                                            <span class="text-muted">{{dataPersonal.civilStatus}}</span>
+                                        </h5>
+
+                                        <h5 class="mb-2">Documento:
+                                            <span class="text-muted">{{dataPersonal.document}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Email: <span class="text-muted">{{dataPersonal.email}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Teléfono (Hogar):
+                                            <span class="text-muted">{{dataPersonal.phoneOne}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Teléfono (Celular):
+                                            <span class="text-muted">{{dataPersonal.phoneTwo}}</span>
+                                        </h5>
+                                        <h5 class="mb-2">Dirección: <span
+                                                class="text-muted">{{dataPersonal.address}}</span>
+                                            <span class="text-muted">{{dataPersonal.stateResidence}}</span> <span
+                                                class="text-muted">{{dataPersonal.cityResidence}}</span>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="d-flex flex-column content">
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Educación</h4>
+                        </div>
+                        <div class="mb-2" v-for="dataEducation in educationsId">
+                            <div class="card-body card-body-items">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="mb-2">
+                                        <span>{{dataEducation.title}}</span>
+                                    </h3>
+                                </div>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataEducation.school}} -- {{ dataEducation.areaStudy }}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataEducation.typeStudy}} -
+                                        {{dataEducation.state}}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataEducation.initEducation}} /
+                                        {{dataEducation.endEducation}} , {{dataEducation.countryEducation}}</span>
+                                </h5>
+                                <h4></h4>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Experiencia laboral</h4>
+                        </div>
+                        <div class="mb-2" v-for="dataExperience in experienceId">
+                            <div class="card-body card-body-items">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="mb-2">
+                                        <span>{{dataExperience.job}}</span>
+                                    </h3>
+                                    <button type="button" class="btn text-success" data-bs-toggle="modal"
+                                        data-bs-target="#jobExperienceModal" v-bind:data-id="dataExperience.id">
+                                        Ver mas
+                                    </button>
+                                </div>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataExperience.company}}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataExperience.initExperience}} /
+                                        {{dataExperience.endExperience}}</span>
+                                </h5>
+                                <h5 class="mb-2">
+                                    <span class="text-muted">{{dataExperience.description}}</span>
+                                </h5>
+                                <h4></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Otros datos</h4>
+                        </div>
+                        <div class="card-body card-body-items" v-for="dataOthersData in otherDataId">
+                            <h5 class="mb-2">A que puesto aspira:
+                                <span class="text-muted">{{dataOthersData.jobAspires}}</span>
+                            </h5>
+                            <h5 class="mb-2">Salario pretendido:
+                                <span class="text-muted">{{dataOthersData.salary}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tiene alguna discapacidad:
+                                <span class="text-muted">{{dataOthersData.disability}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tipo de discapacidad:
+                                <span class="text-muted">{{dataOthersData.typeDisability}}</span>
+                            </h5>
+                            <h5 class="mb-2">Trabajo en la empresa:
+                                <span class="text-muted">{{dataOthersData.jobThisCompany}}</span>
+                            </h5>
+                            <h5 class="mb-2">En cual sucursal:
+                                <span class="text-muted">{{dataOthersData.branchOffice}}</span>
+                            </h5>
+                            <h5 class="mb-2">Razon por la que se retiro:
+                                <span class="text-muted">{{dataOthersData.reasonForResignation}}</span>
+                            </h5>
+                            <h5 class="mb-2">Estuvo en algun proceso de seleccion:
+                                <span class="text-muted">{{dataOthersData.selectionStage}}</span>
+                            </h5>
+                            <h5 class="mb-2">Hasta que parte del proceso:
+                                <span class="text-muted">{{dataOthersData.stage}}</span>
+                            </h5>
+                            <h5 class="mb-2">Disponibilidad:
+                                <span class="text-muted">{{dataOthersData.availability}}</span>
+                            </h5>
+                            <h5 class="mb-2">Preferencia laboral:
+                                <span class="text-muted">{{dataOthersData.typeJob}}</span>
+                            </h5>
+                            <h5 class="mb-2">Disponibilidad de horarios rotativos:
+                                <span class="text-muted">{{dataOthersData.rotary}}</span>
+                            </h5>
+                            <h5 class="mb-2">Disponibilidad para trabajar fin de semana:
+                                <span class="text-muted">{{dataOthersData.jobWeekend}}</span>
+                            </h5>
+                            <h5 class="mb-2">Conoces a alguien que trabaje en la empresa:
+                                <span class="text-muted">{{dataOthersData.meetPeople}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tipo de relacion:
+                                <span class="text-muted">{{dataOthersData.relationship}}</span>
+                            </h5>
+                            <h5 class="mb-2">Tipo de transporte que utilizaras en caso de trabajar en la
+                                empresa:
+                                <span class="text-muted">{{dataOthersData.transport}}</span>
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Habilidades</h4>
+                        </div>
+                        <div class="card-body card-body-others" v-for="dataSkill in skillsId">
+                            <h5 class="card-title">Habilidades tecnicas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{dataSkill.technicalSkills}}</h6>
+                            <h4></h4>
+                            <h5 class="card-title">Habilidades blandas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{dataSkill.softSkills}}</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="login-box-two d-flex">
+                    <div class="d-flex flex-column">
+                        <div class="bg-titles mb-2">
+                            <h4 class="card-title text-white text-center">Idiomas</h4>
+                        </div>
+                        <div class="mb-2" v-for="datalanguage in languagesId">
+                            <div class="card-body card-body-others" v-for="datalanguage in languagesId">
+                                <div class="d-flex justify-content-between">
+                                    <h3 class="mb-2">
+                                        <span>{{datalanguage.languages}}</span>
+                                    </h3>
+                                </div>
+                                <h5 class="mb-2">Nivel escrito:
+                                    <span class="text-muted">{{datalanguage.writeLevel}}</span>
+                                </h5>
+                                <h5 class="mb-2">Nivel oral:
+                                    <span class="text-muted">{{datalanguage.oralLevel}}</span>
+                                </h5>
+                                <h4></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="login-box-two mt-2">
+                        <div class="card mt-2">
+                            <div class="d-flex flex-column justify-content-center align-items-center">
+                                <img src="../../assets/img/subir.png" alt="subir pdf" style="width: 5rem;"
+                                    class="mt-2 mb-2">
+                                <button class="uploadFile" @click="downloadFile()">Descargar Archivo</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../../assets/scripts/seekerCV.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/scripts/dashboard.js"></script>
+
+</body>
+
+</html>

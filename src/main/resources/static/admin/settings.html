@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Herramientas</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/recruiters.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bx-menu'></i>
+                <span class="text mt-5"><img src="../assets/img/logoGarzon.png" alt="" style="width: 10rem;"></span>
+            </a>
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="./myhome.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Mi portal Garzón</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./users.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./recruiters.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Reclutadores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./allVacancies.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Vacantes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./settings.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Herramientas</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="./profileAdmin.html">
+                        <i class='bx bxs-cog'></i>
+                        <span class="text">Mi perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="logout" @click="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+                <input type="checkbox" id="switch-mode" hidden>
+                <label for="switch-mode" class="switch-mode"></label>
+            </nav>
+        </section>
+        <!-- NAVBAR -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Herramientas</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Mi portal Garzón</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Herramientas</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modal Add Admin or Recruiter -->
+       <!--  <div class="modal fade" id="recruiterModal" tabindex="-1" aria-labelledby="recruiterModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="recruiterModalLabel">Agregar administrador o reclutador</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <section class="d-flex justify-content-center flex-wrap">
+                            <div class="me-5">
+                                <form class="p-5">
+                                    <div class="mb-3">
+                                        <label for="name" class="form-label">Nombre</label>
+                                        <input type="text" class="form-control" id="name" v-model="firstName">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="lastname" class="form-label">Apellido</label>
+                                        <input type="text" class="form-control" id="lastname" v-model="lastName">
+                                    </div>
+
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" v-model="email">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="office">Sucursal</label>
+                                        <select v-model="branchOffice">
+                                            <option v-for="category in branchCategory" :value="category.description">{{
+                                                category.description }}</option>
+                                        </select>
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="office">Rol</label>
+                                        <select v-model="rol">
+                                            <option v-for="category in rols">{{ category }}</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="addUserPersonal">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
+
+        <!-- Modal active recruiters -->
+        <div class="modal fade" id="activeadminRecruitersModal" tabindex="-1"
+    aria-labelledby="activeadminRecruitersModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div v-if="showButtons" class="d-flex flex-column">
+                    <div class="d-flex justify-content-start">
+                        <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <button class="btn btn-success mb-2" @click.prevent="activeAdmin" v-show="showAdminButton">Administrador</button>
+                    <button class="btn btn-success" @click.prevent="activeRecruiter" v-show="showRecruiterButton">Reclutador</button>
+                </div>
+
+                <section v-if="isAdminSectionVisible">
+                    <div class="d-flex flex-column me-5">
+                        <label for="phone1">Administradores</label>
+                                            <select v-model="adminSelectId">
+                                                <option value="">Seleccione</option>
+                                                <option v-for="inactiveAdmin in inactiveAdmins" :value="inactiveAdmin.id">
+                                                    {{ inactiveAdmin.firstName }} {{ inactiveAdmin.lastName}} / {{
+                                                        inactiveAdmin.branchOffice}}</option>
+                                            </select>
+                        <button class="btn btn-success mt-3" @click="activeInactiveAdmin">Activar</button>
+                    </div>
+                </section>
+
+                <section v-if="isRecruiterSectionVisible">
+                    <div class="d-flex flex-column me-5">
+                      <label for="phone1">Reclutadores</label>
+                                            <select v-model="recruitersSelectId">
+                                                <option value="">Seleccione</option>
+                                                <option v-for="inactiveRecruiter in inactiveRecruiters" :value="inactiveRecruiter.id">
+                                                    {{ inactiveRecruiter.firstName }} {{ inactiveRecruiter.lastName}} / {{
+                                                        inactiveRecruiter.branchOffice}}</option>
+                                            </select>
+                      <button class="btn btn-success mt-3" @click="activeInactiveRecruiter">Activar</button>
+                    </div>
+                  </section>
+            </div>
+        </div>
+    </div>
+        </div>
+
+        <!-- Modal Add Admin or Recruiter -->
+        <div class="modal fade" id="adminRecruiterModal" tabindex="-1" aria-labelledby="adminRecruiterModal"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-if="showButtons" class="d-flex flex-column">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('admin')"
+                                v-if="showFirstItem">Administrador</button>
+                            <button class="btn btn-success" @click.prevent="setActiveCategory('recruiter')"
+                                v-if="showSecondItem">Reclutador</button>
+                        </div>
+                        <div v-if="showAddItemStatusAdmin">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <section class="d-flex justify-content-center flex-wrap">
+                                <div class="me-5">
+                                    <form class="p-5">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="name" v-model="firstName">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="lastname" class="form-label">Apellido</label>
+                                            <input type="text" class="form-control" id="lastname" v-model="lastName">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" v-model="email">
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="office">Sucursal</label>
+                                            <select v-model="branchOffice">
+                                                <option v-for="category in branchCategory"
+                                                    :value="category.description">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-success"
+                                            @click="addAdmin">Guardar</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div v-else-if="showAddItemStatusRecruiter">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <section class="d-flex justify-content-center flex-wrap">
+                                <div class="me-5">
+                                    <form class="p-5">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="name" v-model="firstName">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="lastname" class="form-label">Apellido</label>
+                                            <input type="text" class="form-control" id="lastname" v-model="lastName">
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" v-model="email">
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="office">Sucursal</label>
+                                            <select v-model="branchOffice">
+                                                <option v-for="category in branchCategory"
+                                                    :value="category.description">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-success"
+                                            @click="addRecruiter">Guardar</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div v-if="showUpdateItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Modificar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('admin')"
+                                        v-if="showFirstItem">Administrador</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('recruiter')"
+                                        v-if="showSecondItem">Reclutador</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Administradores</label>
+                                            <select v-model="adminSelectId">
+                                                <option value="">Seleccione</option>
+                                                <option v-for="admin in adminActive" :value="admin.id">{{ admin.firstName
+                                                    }} {{ admin.lastName }} / {{ admin.branchOffice }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Reclutadores</label>
+                                            <select v-model="recruitersSelectId">
+                                                <option value="">Seleccione</option>
+                                                <option v-for="recruiter in recruitersActive" :value="recruiter.id">
+                                                    {{ recruiter.firstName }} {{ recruiter.lastName}} / {{
+                                                    recruiter.branchOffice}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button v-if="showButtonUpdateAdmin" class="btn btn-warning"
+                                        @click.prevent="toggleSectionAdmins(adminSelectId)">Modificar</button>
+                                    <button v-else-if="showButtonUpdateRecruiter" class="btn btn-warning"
+                                        @click.prevent="toggleSectionRecruiters(recruitersSelectId)">Modificar</button>
+                                </div>
+                            </form>
+                            <section v-if="showSection" class="d-flex justify-content-center flex-wrap">
+                                <div class="me-5">
+                                    <form class="">
+                                        <div class="mb-3">
+                                            <label for="name" class="form-label">Nombre</label>
+                                            <input type="text" class="form-control" id="name" v-model="firstName">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="lastname" class="form-label">Apellido</label>
+                                            <input type="text" class="form-control" id="lastname" v-model="lastName">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" class="form-control" id="email" v-model="email">
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="office">Sucursal</label>
+                                            <select v-model="branchOffice">
+                                                <option v-for="category in branchCategory"
+                                                    :value="category.description">{{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                        <div class="d-flex flex-column">
+                                            <label for="office">Rol</label>
+                                            <select v-model="rol">
+                                                <option v-for="category in rols">{{ category }}</option>
+                                            </select>
+                                        </div>
+                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Cerrar</button>
+                                        <button v-if="showButtonUpdateAdmin" class="btn btn-warning"
+                                            @click.prevent="updateData('admin')">Modificar</button>
+                                        <button v-else-if="showButtonUpdateRecruiter" class="btn btn-warning"
+                                            @click.prevent="updateData('recruiter')">Modificar</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div v-if="showDeleteItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Eliminar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('admin')"
+                                        v-if="showFirstItem">Administrador</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('recruiter')"
+                                        v-if="showSecondItem">Reclutador</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Administradores</label>
+                                            <select v-model="adminSelectId">
+                                                <option value="">Seleccione</option>
+                                                <option v-for="admin in adminActive" :value="admin.id">{{ admin.firstName
+                                                    }} {{ admin.lastName }} / {{ admin.branchOffice }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Reclutadores</label>
+                                            <select v-model="recruitersSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="recruiter in recruitersActive" :value="recruiter.id">
+                                                    {{ recruiter.firstName }} {{ recruiter.lastName}} / {{
+                                                    recruiter.branchOffice}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button v-if="showButtonUpdateAdmin" class="btn btn-warning"
+                                        @click.prevent="deleteData('admin')">Modificar</button>
+                                    <button v-else-if="showButtonUpdateRecruiter" class="btn btn-warning"
+                                        @click.prevent="deleteData('recruiter')">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showActiveItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Activar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('admin')"
+                                        v-if="showFirstItem">Administrador</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('recruiter')"
+                                        v-if="showSecondItem">Reclutador</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label for="phone1">Administradores</label>
+                                            <select v-model="adminSelectId">
+                                                <option value="">Seleccione</option>
+                                                <option v-for="inactiveAdmin in inactiveAdmins" :value="inactiveAdmin.id">
+                                                    {{ inactiveAdmin.firstName }} {{ inactiveAdmin.lastName}} / {{
+                                                        inactiveAdmin.branchOffice}}</option>
+                                            </select>
+                        <button class="btn btn-secondary mt-3" @click="activeInactiveAdmin">Activar</button>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Reclutadores</label>
+                                            <select v-model="recruitersSelectId">
+                                                <option value="">Seleccione</option>
+                                                <option v-for="inactiveRecruiter in inactiveRecruiters" :value="inactiveRecruiter.id">
+                                                    {{ inactiveRecruiter.firstName }} {{ inactiveRecruiter.lastName}} / {{
+                                                        inactiveRecruiter.branchOffice}}</option>
+                                            </select>
+                      <button class="btn btn-secondary mt-3" @click="activeInactiveRecruiter">Activar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" v-if="showFooter">
+                        <button type="button" class="btn btn-success" @click="showAddItem">Agregar</button>
+                        <button type="button" class="btn btn-warning" @click="showUpdateItem">Modificar</button>
+                        <button type="button" class="btn btn-danger" @click="showDeleteItem">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" @click="showActiveItem">Activar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Personal data -->
+        <div class="modal fade" id="personalDataModal" tabindex="-1" aria-labelledby="personalDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-if="showButtons" class="d-flex flex-column">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('Genero')"
+                                v-if="showFirstItem">Género</button>
+                            <button class="btn btn-success" @click.prevent="setActiveCategory('Estado civil')"
+                                v-if="showSecondItem">Estado
+                                civil</button>
+                        </div>
+                        <div v-if="showAddItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Agregar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex justify-content-start">
+                                    </div>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('Genero')"
+                                        v-if="showFirstItem">Género</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('Estado civil')"
+                                        v-if="showSecondItem">Estado
+                                        civil</button>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success" @click.prevent="submitForm">Agregar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showUpdateItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Modificar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('Genero')"
+                                        v-if="showFirstItem">Género</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('Estado civil')"
+                                        v-if="showSecondItem">Estado
+                                        civil</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Género</label>
+                                            <select v-model="genderSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in genderCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado civil</label>
+                                            <select v-model="civilStatusSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in maritalStatusCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-warning" @click.prevent="updateForm">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showDeleteItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Eliminar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('Genero')"
+                                        v-if="showFirstItem">Género</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('Estado civil')"
+                                        v-if="showSecondItem">Estado
+                                        civil</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Género</label>
+                                            <select v-model="genderSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in genderCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado civil</label>
+                                            <select v-model="civilStatusSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in maritalStatusCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-danger" @click.prevent="deleteForm">Eliminar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showActiveItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Activar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('Genero')"
+                                        v-if="showFirstItem">Género</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('Estado civil')"
+                                        v-if="showSecondItem">Estado
+                                        civil</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Género</label>
+                                            <select v-model="genderSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveGenderCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado civil</label>
+                                            <select v-model="civilStatusSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveMaritalStatusCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-secondary" @click.prevent="activeForm">Activar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" v-if="showFooter">
+                        <button type="button" class="btn btn-success" @click="showAddItem">Agregar</button>
+                        <button type="button" class="btn btn-warning" @click="showUpdateItem">Modificar</button>
+                        <button type="button" class="btn btn-danger" @click="showDeleteItem">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" @click="showActiveItem">Activar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal educations -->
+        <div class="modal fade" id="educationsModal" tabindex="-1" aria-labelledby="educationsModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-if="showButtons" class="d-flex flex-column">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('tipo de estudio')"
+                                v-if="showFirstItem">Tipo de estudio</button>
+                            <button class="btn btn-success" @click.prevent="setActiveCategory('Estado')"
+                                v-if="showSecondItem">Estado</button>
+                        </div>
+                        <div v-if="showAddItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Agregar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex justify-content-start">
+                                    </div>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de estudio')" v-if="showFirstItem">Tipo
+                                        de estudio</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('Estado')"
+                                        v-if="showSecondItem">Estado</button>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success" @click.prevent="submitForm">Agregar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showUpdateItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Modificar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de estudio')" v-if="showFirstItem">Tipo
+                                        de estudio</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('Estado')"
+                                        v-if="showSecondItem">Estado</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Tipo de estudio</label>
+                                            <select v-model="typeStudySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in studyTypeOptions" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado</label>
+                                            <select v-model="stateStudySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in educationStatusCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-warning" @click.prevent="updateForm">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showDeleteItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Eliminar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de estudio')" v-if="showFirstItem">Tipo
+                                        de estudio</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('Estado')"
+                                        v-if="showSecondItem">Estado</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Tipo de estudio</label>
+                                            <select v-model="typeStudySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in studyTypeOptions" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado</label>
+                                            <select v-model="stateStudySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in educationStatusCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-danger" @click.prevent="deleteForm">Eliminar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showActiveItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Activar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('tipo de estudio')" v-if="showFirstItem">Tipo de estudio</button>
+                                <button class="btn btn-success" @click.prevent="setActiveCategory('Estado')"
+                                    v-if="showSecondItem">Estado</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Tipo de estudio</label>
+                                            <select v-model="typeStudySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveStudyTypeOptions" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado</label>
+                                            <select v-model="stateStudySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveEducationStatusCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-secondary" @click.prevent="activeForm">Activar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" v-if="showFooter">
+                        <button type="button" class="btn btn-success" @click="showAddItem">Agregar</button>
+                        <button type="button" class="btn btn-warning" @click="showUpdateItem">Modificar</button>
+                        <button type="button" class="btn btn-danger" @click="showDeleteItem">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" @click="showActiveItem">Activar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal job experience -->
+        <div class="modal fade" id="JobExperienceModal" tabindex="-1" aria-labelledby="JobExperienceModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                            </svg></button>
+                        <div v-if="showButtons" class="d-flex flex-column">
+                            <button class="btn btn-success mb-2"
+                                @click.prevent="setActiveCategory('Actividad de la empresa')"
+                                v-if="showFirstItem">Actividad de la
+                                empresa</button>
+                            <button class="btn btn-success mb-2"
+                                @click.prevent="setActiveCategory('Nivel de experiencia')" v-if="showSecondItem">Nivel
+                                de
+                                experiencia</button>
+                        </div>
+                        <div v-if="showAddItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Agregar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('Actividad de la empresa')"
+                                        v-if="showFirstItem">Actividad de la
+                                        empresa</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('Nivel de experiencia')"
+                                        v-if="showSecondItem">Nivel de
+                                        experiencia</button>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success" @click.prevent="submitForm">Agregar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showUpdateItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Modificar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('Actividad de la empresa')"
+                                        v-if="showFirstItem">Actividad de la
+                                        empresa</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('Nivel de experiencia')"
+                                        v-if="showSecondItem">Nivel de
+                                        experiencia</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Actividad de la empresa</label>
+                                            <select v-model="activitySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in activityCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Nivel de experiencia</label>
+                                            <select v-model="experienceSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in experienceLevelCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-warning" @click.prevent="updateForm">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showDeleteItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Eliminar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('Actividad de la empresa')"
+                                        v-if="showFirstItem">Actividad de la
+                                        empresa</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('Nivel de experiencia')"
+                                        v-if="showSecondItem">Nivel de
+                                        experiencia</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Actividad de la empresa</label>
+                                            <select v-model="activitySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in activityCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Nivel de experiencia</label>
+                                            <select v-model="experienceSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in experienceLevelCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-danger" @click.prevent="deleteForm">Eliminar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showActiveItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Activar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('Actividad de la empresa')"
+                                    v-if="showFirstItem">Actividad de la
+                                    empresa</button>
+                                <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('Nivel de experiencia')"
+                                    v-if="showSecondItem">Nivel de
+                                    experiencia</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Actividad de la empresa</label>
+                                            <select v-model="activitySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveActivityCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <select v-model="experienceSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveExperienceLevelCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-secondary" @click.prevent="activeForm">Activar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" v-if="showFooter">
+                        <button type="button" class="btn btn-success" @click="showAddItem">Agregar</button>
+                        <button type="button" class="btn btn-warning" @click="showUpdateItem">Modificar</button>
+                        <button type="button" class="btn btn-danger" @click="showDeleteItem">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" @click="showActiveItem">Activar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal OthersData -->
+        <div class="modal fade" id="OthersDataModal" tabindex="-1" aria-labelledby="OthersDataModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                            </svg></button>
+                        <div v-if="showButtons" class="d-flex flex-column">
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('puesto')"
+                                v-if="showFirstItem">Puesto al que aspitas?</button>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('salario')"
+                                v-if="showSecondItem">Salario</button>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('transporte')"
+                                v-if="showthreeItem">Transporte</button>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('sucursal')"
+                                v-if="showFourItem">Sucursal</button>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('razon')"
+                                v-if="showFiveItem">Razón de retiro</button>
+                            <button class="btn btn-success mb-2"
+                                @click.prevent="setActiveCategory('tipo de discapacidad')" v-if="showSixItem">Tipo de
+                                discapacidad</button>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('disponibilidad')"
+                                v-if="showSevenItem">Disponibilidad horaria</button>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('tipo de trabajo')"
+                                v-if="showEigthItem">Tipo de trabajo</button>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('tipo de relacion')"
+                                v-if="showNineItem">Tipo de relación</button>
+                            <button class="btn btn-success mb-2"
+                                @click.prevent="setActiveCategory('estado de la postulacion')" v-if="showTenItem">Estado
+                                de la postulación</button>
+                        </div>
+                        <div v-if="showAddItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Agregar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('puesto')"
+                                        v-if="showFirstItem">Puesto al que aspitas?</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('salario')"
+                                        v-if="showSecondItem">Salario</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('transporte')"
+                                        v-if="showthreeItem">Transporte</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('sucursal')"
+                                        v-if="showFourItem">Sucursal</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('razon')"
+                                        v-if="showFiveItem">Razón de retiro</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de discapacidad')"
+                                        v-if="showSixItem">Tipo de
+                                        discapacidad</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('disponibilidad')"
+                                        v-if="showSevenItem">Disponibilidad horaria</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de trabajo')" v-if="showEigthItem">Tipo
+                                        de trabajo</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de relación')" v-if="showNineItem">Tipo
+                                        de relación</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('estado de la postulación')"
+                                        v-if="showTenItem">Estado de la postulación</button>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success" @click.prevent="submitForm">Agregar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showUpdateItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Modificar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('puesto')"
+                                        v-if="showFirstItem">Puesto al que aspitas?</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('salario')"
+                                        v-if="showSecondItem">Salario</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('transporte')"
+                                        v-if="showthreeItem">Transporte</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('sucursal')"
+                                        v-if="showFourItem">Sucursal</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('razon')"
+                                        v-if="showFiveItem">Razón de retiro</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de discapacidad')"
+                                        v-if="showSixItem">Tipo de
+                                        discapacidad</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('disponibilidad')"
+                                        v-if="showSevenItem">Disponibilidad horaria</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de trabajo')" v-if="showEigthItem">Tipo
+                                        de trabajo</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de relación')" v-if="showNineItem">Tipo
+                                        de relación</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('estado de la postulación')"
+                                        v-if="showTenItem">Estado de la postulación</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Puesto al que aspira</label>
+                                            <select v-model="AspiresSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in desiredPositionCategory"
+                                                    :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Salario</label>
+                                            <select v-model="salarySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in salaryRangeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showThree">
+                                        <div class="input-field">
+                                            <label for="phone1">Transporte</label>
+                                            <select v-model="transportSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in transportTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showFour">
+                                        <div class="input-field">
+                                            <label for="phone1">Sucursal</label>
+                                            <select v-model="branchOfficeSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in branchCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showFive">
+                                        <div class="input-field">
+                                            <label for="phone1">Razón del retiro</label>
+                                            <select v-model="reasonSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in retirementReasonCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSix">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de discapacidad</label>
+                                            <select v-model="typeDSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in disabilityTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSeven">
+                                        <div class="input-field">
+                                            <label for="phone1">Disponibilidad horaria</label>
+                                            <select v-model="avaivalitySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in workAvailabilityCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showEigth">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de trabajo</label>
+                                            <select v-model="typeJobSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in jobTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showNine">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de relación</label>
+                                            <select v-model="typeRelashionSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in personalRelationshipCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showTen">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado de la postulación</label>
+                                            <select v-model="statePSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in applicationStateCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-warning" @click.prevent="updateForm">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showDeleteItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Eliminar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('puesto')"
+                                        v-if="showFirstItem">Puesto al que aspitas?</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('salario')"
+                                        v-if="showSecondItem">Salario</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('transporte')"
+                                        v-if="showThreeItem">Transporte</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('sucursal')"
+                                        v-if="showFourItem">Sucursal</button>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('razon')"
+                                        v-if="showFiveItem">Razón de retiro</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de discapacidad')"
+                                        v-if="showSixItem">Tipo de
+                                        discapacidad</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('disponibilidad')"
+                                        v-if="showSevenItem">Disponibilidad horaria</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de trabajo')" v-if="showEigthItem">Tipo
+                                        de trabajo</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('tipo de relación')" v-if="showNineItem">Tipo
+                                        de relación</button>
+                                    <button class="btn btn-success mb-2"
+                                        @click.prevent="setActiveCategory('estado de la postulación')"
+                                        v-if="showTenItem">Estado de la postulación</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Puesto al que aspira</label>
+                                            <select v-model="AspiresSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in desiredPositionCategory"
+                                                    :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Salario</label>
+                                            <select v-model="salarySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in salaryRangeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showThree">
+                                        <div class="input-field">
+                                            <label for="phone1">Transporte</label>
+                                            <select v-model="transportSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in transportTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showFour">
+                                        <div class="input-field">
+                                            <label for="phone1">Sucursal</label>
+                                            <select v-model="branchOfficeSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in branchCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showFive">
+                                        <div class="input-field">
+                                            <label for="phone1">Razón del retiro</label>
+                                            <select v-model="reasonSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in retirementReasonCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSix">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de discapacidad</label>
+                                            <select v-model="typeDSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in disabilityTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSeven">
+                                        <div class="input-field">
+                                            <label for="phone1">Disponibilidad horaria</label>
+                                            <select v-model="avaivalitySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in workAvailabilityCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showEigth">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de trabajo</label>
+                                            <select v-model="typeJobSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in jobTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showNine">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de relación</label>
+                                            <select v-model="typeRelashionSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in personalRelationshipCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showTen">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado de la postulación</label>
+                                            <select v-model="statePSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in applicationStateCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-danger" @click.prevent="deleteForm">Eliminar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showActiveItemStatus">
+                            <div class="d-flex justify-content-center">
+                                <h5>Activar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('puesto')"
+                                    v-if="showFirstItem">Puesto al que aspitas?</button>
+                                <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('salario')"
+                                    v-if="showSecondItem">Salario</button>
+                                <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('transporte')"
+                                    v-if="showthreeItem">Transporte</button>
+                                <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('sucursal')"
+                                    v-if="showFourItem">Sucursal</button>
+                                <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('razon')"
+                                    v-if="showFiveItem">Razón de retiro</button>
+                                <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('tipo de discapacidad')"
+                                    v-if="showSixItem">Tipo de
+                                    discapacidad</button>
+                                <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('disponibilidad')"
+                                    v-if="showSevenItem">Disponibilidad horaria</button>
+                                <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('tipo de trabajo')" v-if="showEigthItem">Tipo
+                                    de trabajo</button>
+                                <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('tipo de relación')" v-if="showNineItem">Tipo
+                                    de relación</button>
+                                <button class="btn btn-success mb-2"
+                                    @click.prevent="setActiveCategory('estado de la postulación')"
+                                    v-if="showTenItem">Estado de la postulación</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Puesto al que aspira</label>
+                                            <select v-model="AspiresSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveDesiredPositionCategory"
+                                                    :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Salario</label>
+                                            <select v-model="salarySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveSalaryRangeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showThree">
+                                        <div class="input-field">
+                                            <label for="phone1">Transporte</label>
+                                            <select v-model="transportSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveTransportTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showFour">
+                                        <div class="input-field">
+                                            <label for="phone1">Sucursal</label>
+                                            <select v-model="branchOfficeSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveBranchCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showFive">
+                                        <div class="input-field">
+                                            <label for="phone1">Razón del retiro</label>
+                                            <select v-model="reasonSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveRetirementReasonCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSix">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de discapacidad</label>
+                                            <select v-model="typeDSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveDisabilityTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSeven">
+                                        <div class="input-field">
+                                            <label for="phone1">Disponibilidad horaria</label>
+                                            <select v-model="avaivalitySelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveWorkAvailabilityCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showEigth">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de trabajo</label>
+                                            <select v-model="typeJobSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactivejobTypeCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showNine">
+                                        <div class="input-field">
+                                            <label for="phone1">Tipo de relación</label>
+                                            <select v-model="typeRelashionSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactivePersonalRelationshipCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showTen">
+                                        <div class="input-field">
+                                            <label for="phone1">Estado de la postulación</label>
+                                            <select v-model="statePSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveApplicationStateCategory"
+                                                    :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-secondary" @click.prevent="activeForm">Activar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" v-if="showFooter">
+                        <button type="button" class="btn btn-success" @click="showAddItem">Agregar</button>
+                        <button type="button" class="btn btn-warning" @click="showUpdateItem">Modificar</button>
+                        <button type="button" class="btn btn-danger" @click="showDeleteItem">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" @click="showActiveItem">Activar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal languagues -->
+        <div class="modal fade" id="languaguesModal" tabindex="-1" aria-labelledby="languaguesModal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div v-if="showButtons" class="d-flex flex-column">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('idiomas')"
+                                v-if="showFirstItem">Idioma</button>
+                            <button class="btn btn-success" @click.prevent="setActiveCategory('niveles')"
+                                v-if="showSecondItem">Nivel</button>
+                        </div>
+                        <div v-if="showAddItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Agregar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <div class="d-flex justify-content-start">
+                                    </div>
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('idiomas')"
+                                        v-if="showFirstItem">Idioma</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('niveles')"
+                                        v-if="showSecondItem">Nivel</button>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-success" @click.prevent="submitForm">Agregar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showUpdateItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Modificar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('idiomas')"
+                                        v-if="showFirstItem">Idioma</button>
+                                    <button class="btn btn-success" @click.prevent="setActiveCategory('niveles')"
+                                        v-if="showSecondItem">Nivel</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Idioma</label>
+                                            <select v-model="langueguesSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in languageCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Nivel</label>
+                                            <select v-model="nivelLSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in languageLevelCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-field">
+                                    <label for="description">Descripción</label>
+                                    <input type="text" v-model="description" id="description">
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-warning" @click.prevent="updateForm">Modificar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showDeleteItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Eliminar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('idiomas')"
+                                    v-if="showFirstItem">Idioma</button>
+                                <button class="btn btn-success" @click.prevent="setActiveCategory('niveles')"
+                                    v-if="showSecondItem">Nivel</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Idioma</label>
+                                            <select v-model="langueguesSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in languageCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Nivel</label>
+                                            <select v-model="nivelLSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in languageLevelCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-danger" @click.prevent="deleteForm">Eliminar</button>
+                                </div>
+                            </form>
+                        </div>
+                        <div v-if="showActiveItemStatus">
+                            <div class="d-flex justify-content-start">
+                                <button class="mb-2" @click.prevent="resetForm" v-if="showResetButton"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                        class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                                    </svg></button>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <h5>Activar</h5>
+                            </div>
+                            <form class="p-1">
+                                <div class="d-flex flex-column">
+                                    <button class="btn btn-success mb-2" @click.prevent="setActiveCategory('idiomas')"
+                                    v-if="showFirstItem">Idioma</button>
+                                <button class="btn btn-success" @click.prevent="setActiveCategory('niveles')"
+                                    v-if="showSecondItem">Nivel</button>
+                                    <div v-if="showFirst">
+                                        <div class="input-field">
+                                            <label>Idioma</label>
+                                            <select v-model="langueguesSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveLanguageCategory" :value="category.id">{{
+                                                    category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div v-if="showSecond">
+                                        <div class="input-field">
+                                            <label for="phone1">Nivel</label>
+                                            <select v-model="nivelLSelectId">
+                                                <option value="">Seleccione una categoría</option>
+                                                <option v-for="category in inactiveLanguageLevelCategory" :value="category.id">
+                                                    {{ category.description }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-center">
+                                    <button class="btn btn-secondary" @click.prevent="activeForm">Activar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer" v-if="showFooter">
+                        <button type="button" class="btn btn-success" @click="showAddItem">Agregar</button>
+                        <button type="button" class="btn btn-warning" @click="showUpdateItem">Modificar</button>
+                        <button type="button" class="btn btn-danger" @click="showDeleteItem">Eliminar</button>
+                        <button type="button" class="btn btn-secondary" @click="showActiveItem">Activar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section buttons -->
+        <section class="sectionSelects mb-5">
+            <h5>Administradores/reclutadores</h5>
+            <button class="accordion" type="button" data-bs-toggle="modal"
+                data-bs-target="#adminRecruiterModal">Agregar / Modificar / Eliminar / Activar</button>
+        </section>
+
+        <section class="sectionSelects mb-5">
+            <h5>Items (Agregar / Modificar / Eliminar / Activar)</h5>
+            <button class="accordion" type="button" data-bs-toggle="modal" data-bs-target="#personalDataModal">Datos
+                personales</button>
+
+            <button class="accordion" type="button" data-bs-toggle="modal" data-bs-target="#educationsModal">Formación
+                académica</button>
+
+            <button class="accordion" type="button" data-bs-toggle="modal"
+                data-bs-target="#JobExperienceModal">Experiencia laboral</button>
+
+            <button class="accordion" type="button" data-bs-toggle="modal" data-bs-target="#OthersDataModal">Otros
+                datos</button>
+
+            <button class="accordion" type="button" data-bs-toggle="modal"
+                data-bs-target="#languaguesModal">Idiomas</button>
+        </section>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../../assets/scripts/settings.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"
+        integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/scripts/dashboard.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
