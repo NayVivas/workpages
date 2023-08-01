@@ -16,41 +16,23 @@
 
 <body>
   <div id="app" v-cloak>
-    <header class="main-header">
-      <div class="mobile-nav">
-        <div class="logo-container">
-          <a href="index.html">
-            <img src="../assets/img/logoGarzon.png" alt="">
-          </a>
+    <nav class="nav">
+      <div class="container-navbar d-flex justify-content-between">
+        <div class="logo">
+          <a href="../static/index.html"><img src="../assets/img/logoGarzon.png" alt="" class="img-logo"></a>
         </div>
-        <div class="nav-btn">
-          <div class="nav-btn-stroke"></div>
-          <div class="nav-btn-stroke"></div>
-          <div class="nav-btn-stroke"></div>
-        </div>
-      </div>
-      <div class="desktop-nav">
-        <div class="logo-container">
-          <a href="index.html">
-            <img src="./assets/img/logoGarzon.png" alt="">
-          </a>
-        </div>
-        <nav class="main-nav">
-          <ul class="nav-list">
-            <li class="nav-item">
-              <a href="../index.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item">
-              <a href="./selectOffices.html" class="nav-link">Trabaja con nosotros</a>
-            </li>
+        <div id="mainListDiv" class="main_list">
+          <ul class="navlinks">
+            <li><a href="./login.html" class="button button-portal">Portal Web</a></li>
           </ul>
-        </nav>
-        <div>
-          <button v-if="isLoggedIn" @click="redirectToPage" class="button">Mi portal Garzon</button>
-          <button v-else @click="redirectToPage" class="button">Portal Web</button>
         </div>
+       <!--  <span class="navTrigger">
+          <i></i>
+          <i></i>
+          <i></i>
+        </span> -->
       </div>
-    </header>
+    </nav>
     <div class="first-wrap">
       <div class="first-div">
         <div class="first-inner-div">
@@ -118,8 +100,9 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
-
   <script src="../assets/scripts/users.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="../assets/scripts/navbar.js"></script>
 </body>
 
 </html>

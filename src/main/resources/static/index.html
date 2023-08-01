@@ -12,34 +12,43 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
   <link rel="stylesheet" href="./assets/css/index.css" />
   <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+  <link rel="stylesheet" href="../static/assets/css/navbar.css">
+
 </head>
 
 <body>
   <div id="app">
-    <nav>
-      <img src="../assets/img/logoGarzon.png" />
-      <div>
-        <a href="#"> Home </a>
-        <a href="./seeker/selectOffices.html"> Trabaja con nosotros </a>
-      </div>
-      <div>
-        <a href="./login.html" class="button">Portal Web</a>
+
+    <nav class="nav">
+      <div class="container-navbar">
+        <div class="logo">
+          <a href="../static/index.html"><img src="../static/assets/img/logoGarzon.png" alt="" class="img-logo"></a>
+        </div>
+        <div id="mainListDiv" class="main_list">
+          <ul class="navlinks">
+            <li><a href="./login.html" class="button">Portal Web</a></li>
+          </ul>
+        </div>
+        <span class="navTrigger">
+          <i></i>
+          <i></i>
+          <i></i>
+        </span>
       </div>
     </nav>
+
+
+
     <section class="section-video">
       <video autoplay muted loop id="myVideo">
         <source src="./assets/img/videoIndex.mp4" type="video/mp4">
       </video>
-      <div class="d-flex justify-content-center mt-2">
-        <div>
-          <h2>
-            <a href="./seeker/selectOffices.html" class="container-info">
-              <h3 class="hero-title">
-                Conoce nuestras ofertas laborales
-              </h3>
-            </a>
-          </h2>
-        </div>
+      <div class="d-flex justify-content-center mt-2 container-jobs">
+        <h2 class="hero-title">
+          <a href="./seeker/selectOffices.html" class="container-info">
+            Conoce nuestras ofertas laborales
+          </a>
+        </h2>
       </div>
     </section>
 
@@ -73,7 +82,6 @@
           </div>
           <p><b>Nos desafiamos todos los dias y crecemos haciendo. Queremos conocerte. !Sumate a Empresas Garzón!</b>
           </p>
-          </ul>
           <!--   <img src="./assets/img/Gar.png" alt="" class="logoGarzon-one"> -->
         </div>
       </section>
@@ -81,7 +89,6 @@
       <section class="description panel red">
         <div class="d-flex container-index bg-body-tertiary section-portal">
           <div class="d-flex flex-column">
-            <!--           <img src="./assets/img/zon.png" alt="" class="logoGarzon-two"> -->
             <div>
               <h2 class="text-center">Conocemos mas</h2>
             </div>
@@ -284,7 +291,9 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"
     integrity="sha512-A64Nik4Ql7/W/PJk2RNOmVyC/Chobn5TY08CiKEX50Sdw+33WTOpPJ/63bfWPl0hxiRv1trPs5prKO8CpA7VNQ=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="./assets/scripts/index.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="./assets/scripts/registerAndLogin.js"></script>
+  <script src="./assets/scripts/navbar.js"></script>
 </body>
 
 </html>

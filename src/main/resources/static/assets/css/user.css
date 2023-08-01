@@ -44,11 +44,6 @@ h3 {
   font-size: 1.4em;
 }
 
-h4 {
-  font-family: var(--font-title);
-  border-bottom: 2px solid var(--color-primary);
-  font-size: 1.5em;
-}
 
 h5 {
   font-family: var(--font-subtitle);
@@ -98,7 +93,12 @@ body {
 .card-vacancy-details {
   -webkit-box-shadow: 0 2px 60px -5px rgba(0, 0, 0, 0.1);
   box-shadow: 0 2px 60px -5px rgba(0, 0, 0, 0.1);
-  width: 50vw;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+
 }
 
 .card-header {
@@ -485,6 +485,83 @@ button img {
 
 .direction-r .desc {
   margin: 1em 0 0 0.75em;
+}
+
+/* ================ Footer ================ */
+.container-footer {
+  width: 100vw;
+  margin: auto;
+}
+
+.footer-footer {
+  background-color: var(--color-footer);
+  padding: 20px 0;
+  height: 50%;
+}
+
+.footer-col {
+  width: 25%;
+  padding: 0 10px;
+}
+
+.footer-col h4 {
+  font-size: 18px;
+  color: #ffffff;
+  text-transform: capitalize;
+  margin-bottom: 35px;
+  font-weight: 500;
+  position: relative;
+  font-family: var(--font-title);
+}
+
+.footer-col h4::before {
+  content: '';
+  position: absolute;
+  left: 5rem;
+  bottom: -10px;
+  background-color: var(--color-primary);
+  height: 2px;
+  box-sizing: border-box;
+  width: 200px;
+}
+
+.footer-col ul li:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+.footer-col ul li a {
+  font-size: 16px;
+  text-transform: capitalize;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 300;
+  color: #bbbbbb;
+  display: block;
+  transition: all 0.3s ease;
+  font-family: var(--font-paragraph);
+}
+
+.footer-col ul li a:hover {
+  color: #ffffff;
+  padding-left: 8px;
+}
+
+.footer-col .social-links a {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 10px 10px 0;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  color: #ffffff;
+  transition: all 0.5s ease;
+}
+
+.footer-col .social-links a:hover {
+  color: #24262b;
+  background-color: #ffffff;
 }
 
 /* ================ Timeline Media Queries ================ */
