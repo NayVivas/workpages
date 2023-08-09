@@ -1,394 +1,155 @@
-.nav {
-	width: 100%;
-	height: 65px;
-	position: fixed;
-	line-height: 65px;
-	text-align: center;
-	z-index: 100;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
 }
 
-.nav div.logo {
-	float: left;
-	width: auto;
-	height: auto;
-	padding-left: 3rem;
+.header {
+  height: 90px;
+  background: #198754;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999999999;
 }
 
-.nav div.logo a {
-	text-decoration: none;
-	color: #fff;
-	font-size: 2.5rem;
+.header img {
+	width: 10rem;
 }
 
-.nav div.logo a:hover {
-	color: var(--color-primary);
+.header-menu {
+  height: 90px;
+  background: #198754;
+  width: 100%;
+  z-index: 99999999999;
 }
 
-.nav div.main_list {
-	height: 65px;
-	float: right;
+.header-menu img {
+	width: 10rem;
 }
 
-.nav div.main_list ul {
-	width: 100%;
-	height: 65px;
-	display: flex;
-	list-style: none;
-	margin: 0;
-	padding: 0;
+.inner-width{
+  max-width: 1000px;
+  padding: 0 10px;
+  margin: auto;
 }
 
-.nav div.main_list ul li {
-	width: auto;
-	height: 50px;
-	padding: 0;
-	padding-right: 3rem;
+.menu {
+	margin-left: 40vw;
 }
 
-.nav div.main_list ul li a {
-	text-decoration: none;
-	color: #000000;
-	line-height: 65px;
-	font-size: 1.2rem;
-	font-family: var(--font-navbar);
+.logo{
+  float: left;
+  padding: 10px 0;
+  color: #fff;
 }
 
-.nav div.main_list ul li a:hover {
-	color: #000000;
+.navigation-menu{
+  float: right;
+  display: flex;
+  align-items: center;
+  min-height: 90px;
 }
 
-
-.navTrigger {
-	display: none;
+.navigation-menu a {
+  margin-left: 10px;
+  color: #ddd;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: .3s linear;
 }
 
-.nav {
-	padding-top: 20px;
-	padding-bottom: 20px;
-	-webkit-transition: all 0.4s ease;
-	transition: all 0.4s ease;
+.navigation-menu a:hover{
+  background: gold;
+  color: #fff;
+  transform: scale(1.1);
 }
 
-.button {
-	padding: 0.8rem;
-	font-size: 1rem;
-	background-color: var(--color-secundary);
-	border: none;
-	border-radius: 1rem;
-	cursor: pointer;
+.navigation-menu i{
+  margin-right: 8px;
+  font-size: 16px;
 }
 
-.button-portal {
-	margin-left: 70rem;
+.home{
+  color: #fff;
 }
 
-.logo {
-	max-width: 250px;
+a.aj_btn {
+  background: gold;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 2px;
 }
 
-.img-logo {
-	max-width: 100%;
-	max-height: 60px;
+a.aj_btn:hover{
+  background: #fff;
+  color: gold;
+  font-weight: 500;
+  letter-spacing: 2px;
 }
 
-
-/* Media qurey section */
-
-@media screen and (max-width: 1280px) {
-
-	.button-portal {
-		margin-left: 55rem;
-	}
+.menu-toggle-btn{
+  float: right;
+  height: 90px;
+  line-height: 90px !important;
+  color: #fff;
+  font-size: 26px;
+  display: none !important;
+  cursor: pointer;
 }
-
-@media screen and (min-width: 768px) and (max-width: 1024px) {
-	.container-navbar {
-		margin: 0;
-	}
-
-	.button-portal {
-		margin-left: 26rem;
-	}
-}
-
-@media screen and (max-width:768px) {
-	.button-portal {
-		margin-left: 24rem;
-	}
-
-	/* .navTrigger {
-		display: block;
-	}
-
-	.nav div.logo {
-		margin-left: 15px;
-	}
-
-	.nav div.main_list {
-		width: 100%;
-		height: 0;
-		overflow: hidden;
-	}
-	.nav div.show_list {
-		height: auto;
-		display: none;
-	}
-	.nav div.main_list ul {
-		flex-direction: column;
-		width: 100%;
-		height: 100vh;
-		right: 0;
-		left: 0;
-		bottom: 0;
-		background-color: rgba(0, 44, 111, 0.8);
-		background-position: center top;
-	  }
-	.nav div.main_list ul li {
-		width: 100%;
-		text-align: right;
-	}
-	.nav div.main_list ul li a {
-		text-align: center;
-		width: 100%;
-		font-size: 3rem;
-		padding: 20px;
-	}
-	.nav div.media_button {
-		display: block;
-	} */
-}
-
-
-/*  .navTrigger {
-	cursor: pointer;
-	width: 30px;
-	height: 25px;
-	margin: auto;
-	position: absolute;
-	right: 30px;
-	top: 0;
-	bottom: 0;
-  }
-  
-  .navTrigger i {
-	background-color: #fff;
-	border-radius: 2px;
-	content: '';
-	display: block;
-	width: 100%;
-	height: 4px;
-  }
-  
-  .navTrigger i:nth-child(1) {
-	-webkit-animation: outT 0.8s backwards;
-	animation: outT 0.8s backwards;
-	-webkit-animation-direction: reverse;
-	animation-direction: reverse;
-  }
-  
-  .navTrigger i:nth-child(2) {
-	margin: 5px 0;
-	-webkit-animation: outM 0.8s backwards;
-	animation: outM 0.8s backwards;
-	-webkit-animation-direction: reverse;
-	animation-direction: reverse;
-  }
-  
-  .navTrigger i:nth-child(3) {
-	-webkit-animation: outBtm 0.8s backwards;
-	animation: outBtm 0.8s backwards;
-	-webkit-animation-direction: reverse;
-	animation-direction: reverse;
-  }
-  
-  .navTrigger.active i:nth-child(1) {
-	-webkit-animation: inT 0.8s forwards;
-	animation: inT 0.8s forwards;
-  }
-  
-  .navTrigger.active i:nth-child(2) {
-	-webkit-animation: inM 0.8s forwards;
-	animation: inM 0.8s forwards;
-  }
-  
-  .navTrigger.active i:nth-child(3) {
-	-webkit-animation: inBtm 0.8s forwards;
-	animation: inBtm 0.8s forwards;
-  }
-  
-  @-webkit-keyframes inM {
-	50% {
-		-webkit-transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(45deg);
-	}
-  }
-  
-  @keyframes inM {
-	50% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(45deg);
-	}
-  }
-  
-  @-webkit-keyframes outM {
-	50% {
-		-webkit-transform: rotate(0deg);
-	}
-	100% {
-		-webkit-transform: rotate(45deg);
-	}
-  }
-  
-  @keyframes outM {
-	50% {
-		transform: rotate(0deg);
-	}
-	100% {
-		transform: rotate(45deg);
-	}
-  }
-  
-  @-webkit-keyframes inT {
-	0% {
-		-webkit-transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		-webkit-transform: translateY(9px) rotate(0deg);
-	}
-	100% {
-		-webkit-transform: translateY(9px) rotate(135deg);
-	}
-  }
-  
-  @keyframes inT {
-	0% {
-		transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		transform: translateY(9px) rotate(0deg);
-	}
-	100% {
-		transform: translateY(9px) rotate(135deg);
-	}
-  }
-  
-  @-webkit-keyframes outT {
-	0% {
-		-webkit-transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		-webkit-transform: translateY(9px) rotate(0deg);
-	}
-	100% {
-		-webkit-transform: translateY(9px) rotate(135deg);
-	}
-  }
-  
-  @keyframes outT {
-	0% {
-		transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		transform: translateY(9px) rotate(0deg);
-	}
-	100% {
-		transform: translateY(9px) rotate(135deg);
-	}
-  }
-  
-  @-webkit-keyframes inBtm {
-	0% {
-		-webkit-transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		-webkit-transform: translateY(-9px) rotate(0deg);
-	}
-	100% {
-		-webkit-transform: translateY(-9px) rotate(135deg);
-	}
-  }
-  
-  @keyframes inBtm {
-	0% {
-		transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		transform: translateY(-9px) rotate(0deg);
-	}
-	100% {
-		transform: translateY(-9px) rotate(135deg);
-	}
-  }
-  
-  @-webkit-keyframes outBtm {
-	0% {
-		-webkit-transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		-webkit-transform: translateY(-9px) rotate(0deg);
-	}
-	100% {
-		-webkit-transform: translateY(-9px) rotate(135deg);
-	}
-  }
-  
-  @keyframes outBtm {
-	0% {
-		transform: translateY(0px) rotate(0deg);
-	}
-	50% {
-		transform: translateY(-9px) rotate(0deg);
-	}
-	100% {
-		transform: translateY(-9px) rotate(135deg);
-	}
-  } */
 
 .affix {
 	padding: 0;
 	background-color: var(--color-primary);
 }
 
-.myH2 {
-	text-align: center;
-	font-size: 4rem;
+@media (max-width: 767px) {
+
+  .header {
+    height: 75px;
+  }
+
+  .header img,
+  .header-menu img {
+    width: 6rem;
+  }
+
+  .navigation-menu{
+    min-height: 40px;
+    margin-top: 1rem;
+  }
+  
+  .navigation-menu a {
+    font-size: 0.8em;
+    padding: 10px 15px;
+  }
 }
 
-.myP {
-	text-align: justify;
-	padding-left: 15%;
-	padding-right: 15%;
-	font-size: 20px;
+@media (max-width: 425px) {
+  .navigation-menu{
+    margin-left: 7rem;
+  }
 }
 
-@media all and (max-width:700px) {
-	.myP {
-		padding: 2%;
-	}
-}
+@media (max-width: 375px) {
 
-@media screen and (max-width:574px) {
-	.button-portal {
-		margin-left: 8rem;
-		font-size: 0.8em !important;
-	}
+  .header {
+    height: 75px;
+  }
 
-	.logo {
-		max-width: 150px;
-	}
-}
-
-@media screen and (max-width:425px) {
-	.button-portal {
-		margin-left: 7rem;
-		padding: 6px 12px;
-	}
-
-	.logo {
-		max-width: 120px;
-	}
+  .navigation-menu{
+    min-height: 30px;
+    margin-top: 1.2rem;
+    margin-left: 5rem;
+  }
+  
+  .navigation-menu a {
+    font-size: 0.7em;
+    padding: 8px 12px;
+  }
 }

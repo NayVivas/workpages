@@ -87,7 +87,7 @@ ul {
 .footer-col h4::before {
   content: '';
   position: absolute;
-  left: 2rem;
+  left: 0rem;
   bottom: -10px;
   background-color: rgb(25, 135, 84);
   height: 2px;

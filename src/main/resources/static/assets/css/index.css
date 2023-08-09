@@ -162,7 +162,7 @@ p {
 .container-info {
   text-decoration: none;
   position: absolute;
-  top: 38vw !important;
+  top: 40vw !important;
   left: 25vw !important;
   width: 50vw !important;
   border-radius: 1rem;
@@ -211,8 +211,8 @@ p {
 }
 
 .container-icons {
-  margin-top: 5vw;
-  margin-bottom: 4vw;
+  margin-top: 3vw;
+  margin-bottom: 2vw;
   height: 50%;
   width: 100vw;
 }
@@ -313,8 +313,11 @@ ul {
 
 /* ================ Media Querys ================ */
 @media only screen and (max-width: 992px) {
+
   .container-info {
     top: 90vw !important;
+    left: 20vw !important;
+    width: 60vw !important;
   }
 
   .card p {
@@ -341,7 +344,6 @@ ul {
   }
 }
 
-
 @media only screen and (max-width: 768px) {
 
   .footer-col h4::before {
@@ -362,15 +364,15 @@ ul {
 
 @media  only screen and (max-width: 574px) {
 
-  h3 {
-    font-size: 1rem;
+  .container-info {
+    font-size: 0.8em;
+    width: 70vw !important;
+    top: 120vw !important;
+    left: 15vw !important;
   }
 
-  .container-info {
-    font-size: 0.5em;
-    padding: 0.5rem;
-    top: 35rem !important;
-    width: 55vw !important;
+  h3 {
+    font-size: 1rem;
   }
 
   .container-icons .row {
@@ -396,13 +398,8 @@ ul {
 }
 
 @media  only screen and (max-width: 425px) {
-
   .container {
     margin-top: 2.5rem;
-  }
-
-  .container-info {
-    top: 33rem !important;
   }
 
   .section-portal {
@@ -422,5 +419,67 @@ ul {
   .footer-col h4::before {
     left: 0rem;
     width: 150px;
+  }
+
+  
+}
+
+@media  only screen and (max-width: 375px) {
+
+  .container {
+    margin-top: 0rem;
+  }
+
+  .container-info {
+    font-size: 0.6em;
+  }
+
+  .container h2 {
+    font-size: 1.5em;
+  }
+
+  .container h4 {
+    font-size: 1.2em;
+  }
+
+  .container p {
+    font-size: 0.9em;
+  }
+
+  .icons-index {
+    width: 3rem;
+  }
+  
+  .card {
+    width: 8rem !important;
+    height: 8rem !important;
+  }
+  
+  .card p {
+    font-size: 0.7em;
+  }
+}
+
+@media  only screen and (max-width: 325px) {
+
+  .container h2 {
+    font-size: 1.3em;
+  }
+
+  .container h4 {
+    font-size: 1.1em;
+  }
+
+  .container p {
+    font-size: 0.8em;
+  }
+
+  .card {
+    width: 7rem !important;
+    height: 7rem !important;
+  }
+  
+  .card p {
+    font-size: 0.6em;
   }
 }
