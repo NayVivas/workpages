@@ -1,0 +1,444 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  }
+  
+  @font-face {
+    font-family: Title;
+    src: url("../fonts/Poppins-Medium.ttf");
+  }
+  
+  @font-face {
+    font-family: Sub-Title;
+    src: url("../fonts/Poppins-Regular.ttf");
+  }
+  
+  
+  @font-face {
+    font-family: Paragraph;
+    src: url("../fonts/Poppins-Regular.ttf");
+  }
+  
+  h2 {
+    font-family: var(--font-title);
+  }
+  
+  h4 {
+    font-family: var(--font-subtitle);
+  }
+  
+  p {
+    font-family: var(--font-paragraph)
+  }
+  
+  :root {
+    --main: hsl(234, 40%, 25%);
+    --title: black;
+    --secondary: #009eb8;
+    --paragraph: #4b4b4c;
+    --font-title: Title;
+    --font-subtitle: Sub-Title;
+    --font-paragraph: Paragraph;
+    --color-primary: #198754;
+    --color-secundary: gold;
+    --color-footer: #24262b;
+  }
+  
+  [v-cloak] {
+    display: none;
+  }
+  
+
+.accordion {
+    width: 70vw !important;
+    margin-right: 6rem;
+}
+
+.idRecruiter {
+    background-color: rgb(25,135,84);
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.accordion {
+    --bs-accordion-btn-focus-border-color: #a9ffbb;
+    --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(2, 69, 28, 0.25);
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #e0ffe7;
+}
+
+p {
+    font-size: 15px !important;
+    font-weight: 400;
+    color: #333;
+}
+
+.container-form header{
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1vw;
+}
+.container-form header::before{
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background-color: #42b67c;
+}
+
+
+.container-form form .form{
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+form.secActive .form .first{
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+.container-form form .title{
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+}
+.container-form form .fields{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form .fields .input-field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-field {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .input-field label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2e2e2e;
+  }
+
+.input-field input, select{
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 38px;
+    margin: 8px 0;
+}
+
+.container-form form button, .backBtn{
+
+    height: 50px;
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 5px;
+    margin: 25px 0;
+    background-color: #42b67c;
+    transition: all 0.3s linear;
+    cursor: pointer;
+}
+.container-form form .btnText{
+    font-size: 14px;
+    font-weight: 400;
+}
+form button:hover{
+    background-color: #42b67c;
+}
+
+form .buttons{
+    display: flex;
+    align-items: center;
+}
+
+form .buttons button , .backBtn{
+    margin-right: 14px;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.card:hover {
+    transform: scale(0.95);
+    transition: 0.5s;
+}
+
+.section {
+    width: 70vw !important;
+    height: 8vw;
+    margin-left: 24vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.section-admin {
+    width: 90vw !important;
+    margin-left: 8vw;
+    display: flex;
+    justify-content: space-around;
+}
+
+.button-admin {
+    background-color: transparent;
+    border: none;
+}
+
+.section-myVacancyR {
+    display: flex;
+    justify-content: center;
+    margin-left: 7vw;
+}
+
+.section .card a {
+    text-decoration: none;
+    color: black;
+}
+
+.section-details-recruiter {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.section-search-recruiter {
+    margin-left: 16vw;
+    width: 30vw;
+}
+
+.icon-table {
+    width: 2rem;
+    
+}
+
+.rounded-circle {
+    width: 45px; 
+    height: 45px;
+}
+
+.modal {
+    z-index: 999999999;
+}
+
+
+button img {
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+}
+
+
+.range-slider {
+  width: 200px;
+  height: 35px;
+  text-align: center;
+}
+
+.range-slider input {
+  pointer-events: none;
+  position: absolute;
+  overflow: hidden;
+  left: 0;
+  top: 15px;
+  width: 200px;
+  outline: none;
+  height: 18px;
+  margin: 0;
+  padding: 0;
+}
+
+.range-slider input::-webkit-slider-thumb {
+  pointer-events: all;
+  position: relative;
+  z-index: 1;
+  outline: 0;
+}
+
+.range-slider input::-moz-range-thumb {
+  pointer-events: all;
+  position: relative;
+  z-index: 10;
+  -moz-appearance: none;
+  width: 9px;
+}
+
+.range-slider input::-moz-range-track {
+  position: relative;
+  z-index: -1;
+  background-color: rgba(0, 0, 0, 1);
+  border: 0;
+}
+
+.range-slider input:last-of-type::-moz-range-track {
+  -moz-appearance: none;
+  background: none transparent;
+  border: 0;
+}
+
+.range-slider input[type=range]::-moz-focus-outer {
+border: 0;
+}
+
+.rangeValue {
+width: 30px;
+}
+
+.output {
+position: absolute;
+border:1px solid #999;
+width: 40px;
+height: 30px;
+text-align: center;
+color: #999;
+border-radius: 4px;
+display: inline-block;
+font: bold 15px/30px Helvetica, Arial;
+bottom: 75%;
+left: 50%;
+transform: translate(-50%, 0);
+}
+
+.output.outputTwo {
+left: 100%;
+}
+
+.container {
+position: absolute;
+top: 0;
+left: 50%;
+}
+
+
+.full-range,
+.incl-range {
+width: 100%;
+height: 5px;
+left: 0;
+top: 21px;
+position: absolute;
+background: #DDD;
+}
+
+.incl-range {
+background: gold;
+}
+
+.vacancy-title {
+    width: 30%;
+    text-align: left;
+}
+  
+.branch-office {
+    width: 20%;
+    text-align: center;
+}
+  
+.status {
+    width: 20%;
+    text-align: center;
+}
+
+.recibido {
+    background-color: yellow;
+    border-radius: 1rem;
+}
+  
+.curriculum {
+    background-color: green;
+    border-radius: 1rem;
+}
+  
+  .entrevista {
+    background-color: red;
+  }
+
+.button-modal {
+    background-color: transparent;
+    border: none;
+}
+
+.form-control:focus {
+    border-color: #42b67c;
+    box-shadow: 0 0 0 0.2rem rgba(23, 182, 47, 0.25);
+  }
+
+/* Admin settings */
+
+.accordion {
+    background-color: #f9f9f9;
+    color: #444;
+    cursor: pointer;
+    padding: 18px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 15px;
+    transition: 0.4s;
+  }
+
+  
+  #languaguesModal, #personalDataModal, #educationsModal, 
+  #JobExperienceModal, #OthersDataModal, #languaguesModal, 
+  #adminModal, #recruiterModal, #adminRecruiterModal {
+    z-index: 5000;
+  }
+  
+  .swal2-container {
+    z-index: 9999;
+  }
+
+  .sectionSelects {
+    width: 80%;
+    margin-left: 10rem;
+  }
+
+  button {
+    border: none;
+  }
+
+  .input-textarea {
+    width: 45rem;
+    height: 10rem;
+}
+
+.input-input-textarea {
+    width: 27vw;
+    height: 5vw !important;
+}
+
+  

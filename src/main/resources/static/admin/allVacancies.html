@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacantes</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/recruiters.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bx-menu'></i>
+                <span class="text mt-5"><img src="../assets/img/logoGarzon.png" alt="" style="width: 10rem;"></span>
+            </a>
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="./myhome.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Mi portal Garzón</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./users.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./recruiters.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Reclutadores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./allVacancies.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Vacantes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./settings.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Herramientas</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="./profileAdmin.html">
+                        <i class='bx bxs-cog'></i>
+                        <span class="text">Mi perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="logout" @click="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+                <input type="checkbox" id="switch-mode" hidden>
+                <label for="switch-mode" class="switch-mode"></label>
+            </nav>
+        </section>
+        <!-- NAVBAR -->
+        <main>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Vacantes</h1>
+                    <ul class="breadcrumb">
+                        <li>
+                            <a href="#">Mi portal Garzón</a>
+                        </li>
+                        <li><i class='bx bx-chevron-right'></i></li>
+                        <li>
+                            <a class="active" href="#">Vacantes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <section class="d-flex justify-content-end me-5">
+            <button @click="clearFilters" class="btn btn-success">Limpiar filtros</button>
+        </section>
+
+        <section class="section-admin mt-2 mb-5">
+            <table class="table align-middle mb-0 bg-white">
+                <thead class="bg-light">
+                    <tr>
+                        <th>Titulo de la vacante</th>
+                        <th>Sucursal</th>
+                        <th>Reclutador</th>
+                        <th>Fecha</th>
+                        <th>Activo/Inactivo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <form role="search">
+                                <input class="form-control me-2 bg-body-tertiary" type="search"
+                                    placeholder="Buscar por titulo" aria-label="Search" v-model="message">
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <div class="input-field">
+                                    <select v-model="filterSelectBranchOffice">
+                                        <option value="">Todos</option>
+                                        <option v-for="category in branchCategory" :value="category.description">{{
+                                            category.description }}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                            <form role="search">
+                                <div class="input-field">
+                                    <select v-model="filterSelectRecruiterRol">
+                                        <option value="">Todos</option>
+                                        <option v-for="category in roleCategory" :value="category.description">{{
+                                            category.description }}</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </td>
+                        <td>
+                        </td>
+                    </tr>
+                    <tr v-for="vacancy in filterSelectVacancies">
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ vacancy.jobVacancyTitle }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ vacancy.branchOffice }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ vacancy.postedBy }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="fw-bold mb-1">{{ vacancy.postedDate }}</p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex align-items-center">
+                                <div class="ms-3">
+                                    <p class="status"
+                                        :class="{'badge badge-warning rounded-pill d-inline text-bg-success': vacancy.vacancyActive, 'badge badge-warning rounded-pill d-inline text-bg-danger': !vacancy.vacancyActive}">
+                                        {{ vacancy.vacancyActive ? 'Activo' : 'Inactivo' }}
+                                    </p>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-edit" data-bs-toggle="modal"
+                                data-bs-target="#vacancyModal" @click="changeEditVacancies(vacancy)">
+                                <img src="../assets/img/lapiz.png" alt="">
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Modal EditVacanct-->
+        <div class="modal fade" id="vacancyModal" tabindex="-1" aria-labelledby="vacancyModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="vacancyModalLabel">Editar vacante</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex justify-content-center align-items-center">
+                            <div class="container-form">
+                                <form action="#" v-on:submit.prevent method="post">
+                                    <div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="jobVacancyTitle">Titulo</label>
+                                                <input type="text" id="jobVacancyTitle"
+                                                    placeholder="Titulo de la vacante" v-model="jobVacancyTitle">
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="jobVacancyDescription">Descripción</label>
+                                                <input type="text" id="jobVacancyDescription" placeholder="Descripción"
+                                                    v-model="jobVacancyDescription">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Sucursal</label>
+                                                <select v-model="branchOffice">
+                                                    <option disabled selected>Seleccione la sucursal</option>
+                                                    <option v-for="category in branchCategory" :value="category.id">{{ category.description }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label>Nivel de experiencia</label>
+                                                <select v-model="levelExperience">
+                                                    <option disabled selected>Seleccione la sucursal</option>
+                                                    <option v-for="category in experienceLevelCategory" :value="category.id">{{ category.description }}</option>
+                                                </select>
+                                            </div>
+                                            <div class="input-field">
+                                                <label for="experienceRequired">Experiencia requerida</label>
+                                                <input type="text" id="experienceRequired"
+                                                    placeholder="Nivel de experiencia" v-model="experienceRequired">
+                                            </div>
+                                            <div class="input-field">
+                                                <label>Tu rol en la empresa</label>
+                                                <select v-model="postedBy">
+                                                    <option disabled selected>Seleccione la sucursal</option>
+                                                    <option v-for="category in roleCategory" :value="category.id">{{ category.description }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="fields">
+                                            <div class="input-field">
+                                                <label for="jobVacancySkills">Requisitos para optar por el
+                                                    puesto</label>
+                                                <textarea type="text" id="jobVacancySkills" placeholder="requisitos"
+                                                    v-model="jobVacancySkills"></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="fields d-flex flex-column mt-5">
+                                            <label>Estado de la vacante:</label>
+                                            <div>
+                                                <input type="radio" id="active" value="true"
+                                                    v-model="vacancyActive" />
+                                                <label for="active">Activa</label>
+                                            </div>
+                                            <div>
+                                                <input type="radio" id="inactive" value="false"
+                                                    v-model="vacancyActive" />
+                                                <label for="inactive">Inactiva</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn btn-success" @click="editVacancy">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../assets/scripts/adminRecruiter.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/scripts/dashboard.js"></script>
+
+</body>
+
+</html>

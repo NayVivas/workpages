@@ -1,0 +1,84 @@
+@font-face {
+    font-family: Title;
+    src: url("../fonts/Poppins-Medium.ttf");
+  }
+  
+  .loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    z-index: 999;
+    text-align: center;
+    display:none;
+  }
+  
+  .loader {
+    font-size: 48px;
+    font-family: var(--Title);
+    font-weight: bold;
+    color: #198754;
+    letter-spacing: 2px;
+    position: relative;
+    top: 40%;
+    box-sizing: border-box;
+    display: block;
+  }
+  
+  .loader::after {
+    content: 'Garzón';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: gold;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+    animation: animloader 6s linear infinite;
+    display: block;
+  }
+  
+  @keyframes animloader {
+    0% {
+      height: 100%;
+    }
+    100% {
+      height: 0%;
+    }
+  }
+
+  .loader-one {
+    width: 100%;
+    height: 4.8px;
+    display: inline-block;
+    position: relative;
+    top: 35%;
+    background: rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+  }
+  .loader-one::after {
+    content: '';
+    width: 192px;
+    height: 4.8px;
+    background: #198754;
+    position: absolute;
+    top: 0;
+    left: 0;
+    box-sizing: border-box;
+    animation: animloader-one 2s linear infinite;
+  }
+  
+  @keyframes animloader-one {
+    0% {
+      left: 0;
+      transform: translateX(-100%);
+    }
+    100% {
+      left: 100%;
+      transform: translateX(0%);
+    }
+  }
+      

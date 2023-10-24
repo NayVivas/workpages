@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Admin</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../assets/css/dashboard.css">
+    <link rel="stylesheet" href="../assets/css/recruiters.css">
+    <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app" v-cloak>
+
+        <!-- SIDEBAR -->
+        <section id="sidebar">
+            <a href="#" class="brand">
+                <i class='bx bx-menu'></i>
+                <span class="text mt-5"><img src="../assets/img/logoGarzon.png" alt="" style="width: 10rem;"></span>
+            </a>
+            <ul class="side-menu top">
+                <li class="active">
+                    <a href="./myhome.html">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="text">Mi portal Garzón</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./users.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Usuarios</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./recruiters.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Reclutadores</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./allVacancies.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Vacantes</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="./settings.html">
+                        <i class='bx bxs-shopping-bag-alt'></i>
+                        <span class="text">Herramientas</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="side-menu">
+                <li>
+                    <a href="./profileAdmin.html">
+                        <i class='bx bxs-cog'></i>
+                        <span class="text">Mi perfil</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="logout" @click="logout">
+                        <i class='bx bxs-log-out-circle'></i>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </section>
+        <!-- SIDEBAR -->
+
+        <!-- CONTENT -->
+        <section id="content">
+            <!-- NAVBAR -->
+            <nav>
+                <input type="checkbox" id="switch-mode" hidden>
+                <label for="switch-mode" class="switch-mode"></label>
+            </nav>
+        </section>
+        <!-- NAVBAR -->
+        <main>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="../assets/scripts/adminRecruiter.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <script src="../../assets/scripts/dashboard.js"></script>
+
+</body>
+
+</html>

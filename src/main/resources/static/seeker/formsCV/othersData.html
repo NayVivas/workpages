@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="../../assets/css/formsCV.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+
+</head>
+
+<body>
+  <div id="app" v-cloak>
+
+    <!-- Breadcrumb -->
+    <nav aria-label="breadcrumb" class="ms-5 mt-5">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">Home</li>
+        <li class="breadcrumb-item"><a href="./personalData.html">Datos personales</a></li>
+        <li class="breadcrumb-item"><a href="./educations.html">Formación académica</a></li>
+        <li class="breadcrumb-item"><a href="./jobExperience.html">Experiencia laboral</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Otros datos</li>
+      </ol>
+    </nav>
+    <!-- Breadcrumb -->
+
+    <section class="d-flex justify-content-center align-items-center">
+      <div class="container-form form-other-data">
+        <header>Otros datos</header>
+        <form action="#" v-on:submit.prevent method="post">
+          <div>
+            <div class="fields">
+              <div class="input-field">
+                <label>Puesto al que aspiras</label>
+                <select v-model="jobAspires">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in desiredPositionCategory">{{ category.description }}
+                  </option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label>Salario pretendido</label>
+                <select v-model="salary">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in salaryRangeCategory">{{ category.description }}
+                  </option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label>Transporte</label>
+                <select aria-label="Default select example" v-model="transport">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in transportTypeCategory">{{ category.description }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="fields">
+              <div class="d-flex flex-column">
+                <div>
+                  <label class="label-title">Trabajaste antes en la Empresa?</label>
+                </div>
+                <div class="d-flex">
+                  <div>
+                    <label for="jobCompany1">
+                      <input class="form-check-input ms-5" type="radio" name="jobCompany1" id="jobCompany1"
+                        v-model="jobThisCompany" value="SI">Si</label>
+                  </div>
+                  <div>
+                    <label for="jobCompany2">
+                      <input class="form-check-input ms-4" type="radio" name="jobCompany2" id="jobCompany2"
+                        v-model="jobThisCompany" value="NO">No</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="input-field input-margin">
+                <label for="">Sucursal</label>
+                <select v-model="branchOffice" :class="{ 'disabled': jobThisCompany === 'NO' }"
+                  :disabled="jobThisCompany === 'NO'">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in branchCategory">{{ category.description }}</option>
+                </select>
+              </div>
+
+              <div class="input-field">
+                <label>Razón por la cual te retiraste?</label>
+                <select aria-label="Default select example" v-model="reasonForResignation"
+                  :class="{ 'disabled': jobThisCompany === 'NO' }" :disabled="jobThisCompany === 'NO'">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in retirementReasonCategory">{{ category.description }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="fields">
+              <div class="d-flex flex-column me-4">
+                <div>
+                  <label class="label-title">Tienes alguna discapacidad?</label>
+                </div>
+                <div class="d-flex">
+                  <div>
+                    <label for="disability1">
+                      <input class="form-check-input ms-5" type="radio" name="disability1" id="disability1"
+                        v-model="disability" value="SI">Si</label>
+                  </div>
+                  <div>
+                    <label for="disability2">
+                      <input class="form-check-input ms-4" type="radio" name="disability2" id="disability2"
+                        v-model="disability" value="NO">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-field input-margin">
+                <label>Tipo de discapacidad</label>
+                <select v-model="typeDisability" :class="{ 'disabled': disability === 'NO' }"
+                  :disabled="disability === 'NO'">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in disabilityTypeCategory">{{ category.description }}
+                  </option>
+                </select>
+              </div>
+              <div class="input-field">
+                <label for="">Disponibilidad</label>
+                <select v-model="availability" :class="{ 'disabled': disability === 'NO' }"
+                  :disabled="disability === 'NO'">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in workAvailabilityCategory">{{ category.description }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="fields">
+              <div class="d-flex flex-column">
+                <div>
+                  <label class="label-title">Conoces a alguien que trabaja en la empresa?</label>
+                </div>
+                <div class="d-flex">
+                  <div>
+                    <label for="meetPeople1">
+                      <input class="form-check-input ms-5" type="radio" name="meetPeople1" id="meetPeople1"
+                        v-model="meetPeople" value="SI">Si</label>
+                  </div>
+                  <div>
+                    <label for="meetPeople2">
+                      <input class="form-check-input ms-4" type="radio" name="meetPeople2" id="meetPeople2"
+                        v-model="meetPeople" value="NO">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-field">
+                <label>Tipo de relación</label>
+                <select v-model="relationship" :class="{ 'disabled': meetPeople === 'NO' }"
+                  :disabled="meetPeople === 'NO'">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in personalRelationshipCategory">{{ category.description
+                    }}</option>
+                </select>
+              </div>
+            </div>
+            <div class="fields">
+              <div class="d-flex flex-column">
+                <div>
+                  <label class="label-title">Estuviste en algun proceso de selección de la empresa?</label>
+                </div>
+                <div class="d-flex">
+                  <div>
+                    <label for="selectStage1">
+                      <input class="form-check-input ms-5" type="radio" name="selectStage1" id="selectStage1"
+                        v-model="selectionStage" value="SI">Si</label>
+                  </div>
+                  <div>
+                    <label for="selectStage2">
+                      <input class="form-check-input ms-4" type="radio" name="selectStage2" id="selectStage2"
+                        v-model="selectionStage" value="NO">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="input-field">
+                <label for="">Estado en que quedo tu postulación</label>
+                <select aria-label="Default select example" v-model="stage"
+                  :class="{ 'disabled': selectionStage === 'NO' }" :disabled="selectionStage === 'NO'">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in applicationStateCategory">{{ category.description }}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="fields">
+              <div class="input-field">
+                <label>Tipo de trabajo</label>
+                <select v-model="typeJob">
+                  <option value="">Seleccione una categoría</option>
+                  <option v-for="category in jobTypeCategory">{{ category.description }}</option>
+                </select>
+              </div>
+              <div class="d-flex flex-column">
+                <label class="label-title">Horarios rotativos</label>
+                <div class="d-flex">
+                  <div>
+                    <label for="rotate1">
+                      <input class="form-check-input ms-5" type="radio" name="rotate1" id="rotate1" v-model="rotary"
+                        value="SI">Si</label>
+                  </div>
+                  <div>
+                    <label for="rotate2">
+                      <input class="form-check-input ms-4" type="radio" name="rotate2" id="rotate2" v-model="rotary"
+                        value="NO">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="d-flex flex-column">
+                <div>
+                  <label class="label-title">Fines de semana</label>
+                </div>
+                <div class="d-flex">
+                  <div>
+                    <label for="jobWeekend1">
+                      <input class="form-check-input ms-5" type="radio" name="jobWeekend1" id="jobWeekend1"
+                        v-model="jobWeekend" value="SI">Si</label>
+                  </div>
+                  <div>
+                    <label for="jobWeekend2">
+                      <input class="form-check-input ms-4" type="radio" name="jobWeekend2" id="jobWeekend2"
+                        v-model="jobWeekend" value="NO">No</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex justify-content-end">
+            <div class="d-flex mb-3">
+              <button type="submit" class="btn btn-success" @click="addOtherData">Siguiente</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+  <script src="../../assets/scripts/users.js"></script>
+</body>
+
+</html>

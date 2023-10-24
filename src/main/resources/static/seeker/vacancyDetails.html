@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalles de la vacante</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="../assets/css/user.css">
+  <link rel="stylesheet" href="../assets/css/footer.css">
+  <link rel="stylesheet" href="../assets/css/navbar.css">
+  <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
+</head>
+
+<body>
+  <div id="app" v-cloak>
+    <header class="nav header-menu">
+      <div class="inner-width">
+        <a href="../index.html"><img class="logo" src="../assets/img/logoGarzon.png" alt=""></a>
+        <nav class="navigation-menu menu">
+          <a href="../login.html" class="aj_btn">
+            Portal Web</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="card-vacancy-details">
+      <div class="card">
+        <div class="card-header">
+          <h2 class="text-center">{{vacancy.jobVacancyTitle}}</h2>
+        </div>
+        <div class="card-body d-flex flex-column justify-content-start">
+          <h6>Lugar de trabajo:</h6>
+          <p>{{vacancy.branchOffice}}</p>
+
+          <h6>Descripción del puesto:</h6>
+          <p>{{vacancy.jobVacancyDescription}}</p>
+
+          <h6>Requisitos del puesto</h6>
+          <p>{{vacancy.jobVacancySkills}}</p>
+
+          <button class="btn btn-success" @click="applyJob">Aplicar</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="footer-footer mt-3">
+      <div class="container-footer">
+        <div class="row">
+          <div class="footer-col">
+            <h4>NUESTRA EMPRESA</h4>
+            <ul>
+              <li><a href="#">about us</a></li>
+              <li><a href="#">our services</a></li>
+              <li><a href="#">privacy policy</a></li>
+              <li><a href="#">affiliate program</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>SU CUENTA</h4>
+            <ul>
+              <li><a href="#">FAQ</a></li>
+              <li><a href="#">shipping</a></li>
+              <li><a href="#">returns</a></li>
+              <li><a href="#">order status</a></li>
+              <li><a href="#">payment options</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>CONTACTO</h4>
+            <ul>
+              <li><a href="#">watch</a></li>
+              <li><a href="#">bag</a></li>
+              <li><a href="#">shoes</a></li>
+              <li><a href="#">dress</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>REDES SOCIALES</h4>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-facebook-f"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script src="../assets/scripts/users.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="../assets/scripts/navbar.js"></script>
+</body>
+
+</html>

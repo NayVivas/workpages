@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.header {
+  height: 90px;
+  background: #198754;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 99999999999;
+}
+
+.header img {
+	width: 10rem;
+}
+
+.header-menu {
+  height: 90px;
+  background: #198754;
+  width: 100%;
+  z-index: 99999999999;
+}
+
+.header-menu img {
+	width: 10rem;
+}
+
+.inner-width{
+  max-width: 1000px;
+  padding: 0 10px;
+  margin: auto;
+}
+
+.menu {
+	margin-left: 40vw;
+}
+
+.logo{
+  float: left;
+  padding: 10px 0;
+  color: #fff;
+}
+
+.navigation-menu{
+  float: right;
+  display: flex;
+  align-items: center;
+  min-height: 90px;
+}
+
+.navigation-menu a {
+  margin-left: 10px;
+  color: #ddd;
+  text-transform: uppercase;
+  font-size: 14px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: .3s linear;
+}
+
+.navigation-menu a:hover{
+  background: gold;
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.navigation-menu i{
+  margin-right: 8px;
+  font-size: 16px;
+}
+
+.home{
+  color: #fff;
+}
+
+a.aj_btn {
+  background: gold;
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+a.aj_btn:hover{
+  background: #fff;
+  color: gold;
+  font-weight: 500;
+  letter-spacing: 2px;
+}
+
+.menu-toggle-btn{
+  float: right;
+  height: 90px;
+  line-height: 90px !important;
+  color: #fff;
+  font-size: 26px;
+  display: none !important;
+  cursor: pointer;
+}
+
+.affix {
+	padding: 0;
+	background-color: var(--color-primary);
+}
+
+@media (max-width: 767px) {
+
+  .header {
+    height: 75px;
+  }
+
+  .header img,
+  .header-menu img {
+    width: 6rem;
+  }
+
+  .navigation-menu{
+    min-height: 40px;
+    margin-top: 1rem;
+  }
+  
+  .navigation-menu a {
+    font-size: 0.8em;
+    padding: 10px 15px;
+  }
+}
+
+@media (max-width: 425px) {
+  .navigation-menu{
+    margin-left: 7rem;
+  }
+}
+
+@media (max-width: 375px) {
+
+  .header {
+    height: 75px;
+  }
+
+  .navigation-menu{
+    min-height: 30px;
+    margin-top: 1.2rem;
+    margin-left: 5rem;
+  }
+  
+  .navigation-menu a {
+    font-size: 0.7em;
+    padding: 8px 12px;
+  }
+}

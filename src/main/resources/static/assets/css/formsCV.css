@@ -1,0 +1,343 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+:root {
+    --main: hsl(234, 40%, 25%);
+    --title: black;
+    --secondary: #009eb8;
+    --paragraph: #4b4b4c;
+    --font-title: Title;
+    --font-subtitle: Sub-Title;
+    --font-paragraph: Paragraph;
+    --color-primary: #198754;
+    --color-secundary: gold;
+    --color-footer: #24262b;
+}
+
+[v-cloak] {
+    display: none;
+}
+
+@font-face {
+    font-family: Title;
+    src: url("../fonts/Poppins-Medium.ttf");
+}
+
+@font-face {
+    font-family: Sub-Title;
+    src: url("../fonts/Poppins-ExtraBold.ttf");
+}
+
+
+@font-face {
+    font-family: Paragraph;
+    src: url("../fonts/Poppins-Black.ttf");
+}
+
+h2 {
+    font-family: var(--font-title);
+}
+
+h4 {
+    font-family: var(--font-subtitle);
+}
+
+p {
+    font-family: var(--font-paragraph)
+}
+
+
+body {
+    min-height: 100vh;
+}
+
+/* ================ Forms CV ================ */
+.container-form {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    height: 60vh !important; 
+    border-radius: 6px;
+    padding: 30px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.addVacancy {
+    max-width: 600px;
+}
+
+.container-form-image {
+    position: relative;
+    max-width: 400px;
+    width: 50%;
+    border-radius: 6px;
+    padding: 30px;
+    margin: 0px 50px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.educations {
+    height: 35vw;
+
+}
+
+.container-form header {
+    position: relative;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 1vw;
+}
+
+.container-form header::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 3px;
+    width: 27px;
+    border-radius: 8px;
+    background-color: #42b67c;
+}
+
+
+.container-form form .form {
+    position: absolute;
+    background-color: #fff;
+    transition: 0.3s ease;
+}
+
+form.secActive .form .first {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(-100%);
+}
+
+.container-form form .title {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 6px 0;
+    color: #333;
+}
+
+.container-form form .fields {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+form .fields .input-field {
+    display: flex;
+    width: calc(100% / 3 - 15px);
+    flex-direction: column;
+    margin: 4px 0;
+}
+
+.input-field label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+
+.input-field input,
+select {
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 0 15px;
+    height: 38px;
+    margin: 8px 0;
+}
+
+.container-form form .btnText {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+form button:hover {
+    background-color: #42b67c;
+}
+
+form .buttons {
+    display: flex;
+    align-items: center;
+}
+
+form .buttons button,
+.backBtn {
+    margin-right: 14px;
+}
+
+h6 {
+    font-size: 0.75em !important;
+}
+
+.input-textarea {
+    width: 52.5rem;
+    height: 8rem;
+}
+
+.input-input-textarea {
+    width: 27vw;
+    height: 5vw !important;
+}
+
+.container-cards {
+    max-width: 18vw;
+    width: 100%;
+    border-radius: 6px;
+    padding: 15px;
+    background-color: #ffffff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+h6 {
+    font-size: 15px !important;
+    font-weight: 600;
+    color: #333;
+}
+
+p {
+    font-size: 15px !important;
+    font-weight: 400;
+    color: #333;
+}
+
+.label-title {
+    font-size: 0.8em;
+}
+
+.imgProfile {
+    width: 20rem;
+    height: 15rem;
+}
+
+.disabled {
+    background-color: #cacaca;
+}
+
+.input-margin {
+    margin-left: 5rem !important;
+}
+
+
+/* ================ Media Querys ================ */
+@media only screen and (max-width: 1290px) {
+    .container-form-image {
+        position: relative;
+        max-width: 250px;
+        width: 50%;
+        border-radius: 6px;
+        padding: 20px;
+        margin: 0px 50px;
+        background-color: #ffffff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .container-form {
+        position: relative;
+        max-width: 900px;
+        width: 85%;
+        border-radius: 6px;
+        padding: 30px;
+        background-color: #ffffff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+
+@media only screen and (max-width: 375px) {
+    .imgProfile {
+        width: 15rem;
+        height: 14rem;
+    }
+}
+
+
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .input-textarea {
+        width: 44rem;
+    }
+
+    .container-form {
+        height: 50vh !important; 
+    }
+}
+
+@media screen and (min-width: 574px) and (max-width: 768px) {
+    .container-form {
+        height: 70vh !important; 
+    }
+
+    .container-form form {
+        overflow-y: scroll;
+    }
+
+    .container-form form::-webkit-scrollbar {
+        display: none;
+    }
+
+    form .fields .input-field {
+        width: calc(100% / 2 - 15px);
+    }
+
+    .input-textarea {
+        width: 35rem;
+    }
+}
+
+@media screen and (max-width: 574px) {
+    form .fields .input-field {
+        width: 100%;
+    }
+
+    .input-textarea {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        resize: vertical;
+    }
+
+    .container-form {
+        height: 120vh !important; 
+    }
+
+    .buttons {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 430px) {
+    .container-form {
+        height: 115vh !important; 
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .container-form {
+        height: 120vh !important; 
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .container-form {
+        height: 160vh !important; 
+    }
+}
